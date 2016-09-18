@@ -4,8 +4,8 @@ module.exports = function(app)
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
 
-    var connectionString = 'mongodb://127.0.0.1:27017/test';
-
+    //var connectionString = 'mongodb://127.0.0.1:27017/test';
+	var connectionString = 'mongodb://heroku_12sph4bj:o24170di1gv45h01bepb1k5rga@ds033046.mlab.com:33046/heroku_12sph4bj';
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
             process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
