@@ -3,5 +3,20 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+}
+.navbar-default {
+    background-color: #3d96bd;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-text{
+    color: white;
+}
+
+.glyphicon{
+    margin-right: 15px;
+    color: white;
 }
