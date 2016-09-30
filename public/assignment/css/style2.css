@@ -1,0 +1,71 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 60px;
+}
+
+
+p.navbar-text.pull-right {
+
+}
+
+div.navbar-text.pull-left {
+    margin-left: 0;
+}
+
+.navbar-default {
+    background-color: #3d96bd;
+}
+
+.glyphicon{
+    margin-right: 15px;
+    color: white;
+    margin-left: 15px;
+}
+
+.glyphicon-cog
+{
+    color:#3d96bd;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.navbar-default .navbar-brand {
+    color:white;
+    margin-left: 15px;
+}
+
+.sidebar {
+    display: none;
+}
+
+.nav-sidebar {
+    display: none;
+}
+
+.inverse-sidebar {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .nav-sidebar {
+        display: block;
+    }
+
+    .inverse-sidebar {
+        padding-right: 0;
+        padding-left: 60px;
+    }
+}
+textarea.form-control {
+    height: 120px;
+}

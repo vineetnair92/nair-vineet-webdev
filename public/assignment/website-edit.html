@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style2.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-text pull-left">
+                <a href="website-list.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-head col-sm-4 col-md-3">
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand">Websites</a>
+                </div>
+                <p class="navbar-text pull-right">
+                    <a href="website-new.html">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </p>
+            </div>
+
+            <div class="navbar-head col-sm-8 col-md-9">
+                <div class="navbar-header pull-left">
+                    <a class="navbar-brand">Edit Website</a>
+                </div>
+                </div>
+                <div class="navbar-text pull-right">
+                    <a href="website-new.html">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </div>
+        </div>
+</nav>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="name">Website Name</label>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="Name" value="Blogger">
+        </div>
+        <div class="form-group">
+            <label for="description">Website Description</label>
+        </div>
+        <div class="form-group">
+            <textarea  class="form-control" id="description" placeholder="Description">
+                1)Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries.
+                2)It was developed by Pyra Labs, which was bought by Google in 2003.
+                3)Generally, the blogs are hosted by Google at a subdomain of blogspot.com.
+                4)Blogs can also be hosted in the registered custom domain of the blogger (like www.example.com).
+                5)A user can have up to 100 blogs per account.
+            </textarea>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-danger  btn-block"
+               href="website-list.html">Delete</a>
+        </div>
+    </form>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text pull-right">
+            <div class="pull-right">
+                <a href="profile.html">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

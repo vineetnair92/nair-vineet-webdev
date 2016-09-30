@@ -5,6 +5,7 @@ input.form-control {
 body {
     padding-top: 60px;
 }
+
 .navbar-default {
     background-color: #3d96bd;
 }
@@ -19,4 +20,6 @@ body {
 .glyphicon{
     margin-right: 15px;
     color: white;
+    margin-left: 15px;
 }
+
