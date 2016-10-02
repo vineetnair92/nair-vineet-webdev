@@ -12,7 +12,8 @@ body {
     background-color: #3d96bd;
 }
 
-a:active{
+a:hover
+{
     text-decoration: none;
 }
 
