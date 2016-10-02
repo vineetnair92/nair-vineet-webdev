@@ -12,6 +12,10 @@ body {
     background-color: #3d96bd;
 }
 
+a:active{
+    text-decoration: none;
+}
+
 .glyphicon{
     margin-right: 15px;
     color: white;
