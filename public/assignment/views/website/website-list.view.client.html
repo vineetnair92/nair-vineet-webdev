@@ -1,57 +1,32 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
             <div class="navbar-text pull-left">
-                <a href="profile.html">
+                <a ng-click="model.back()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
         <div class="navbar-header pull-left">
-            <a class="navbar-brand" href="#">Websites</a>
+            <a class="navbar-brand">Websites</a>
         </div>
 
         <p class="navbar-text pull-right">
-            <a href="website-new.html" class="navbar-link">
+            <a ng-click="model.websiteNew()">
                         <span class="glyphicon glyphicon-plus">
                         </span>
             </a>
         </p>
-        </div>
+    </div>
 </nav>
 
 <div>
     <div class="container-fluid">
         <form>
-            <div class="form-group">
-                <a href="page-list.html">Address Book App</a>
+            <div class="form-group" ng-repeat="website in model.websites">
+                <a ng-click="model.websiteOpen(website)">
+                    {{website.name}}
+                </a>
                 <p class ="pull-right">
-                    <a href="website-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="page-list.html">Blogger</a>
-                <p class ="pull-right">
-                    <a href="website-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="page-list.html">Blogging App</a>
-                <p class ="pull-right">
-                    <a href="website-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="page-list.html">Test Scripting App</a>
-                <p class ="pull-right">
-                    <a href="website-edit.html">
+                    <a ng-click = "model.websiteEdit(website)">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </p>
@@ -62,7 +37,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-text pull-right">
-        <a href="profile.html">
+        <a ng-click = "model.profile()">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>

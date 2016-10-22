@@ -17,11 +17,11 @@
         ];
 
         var api = {
-            "createWebsite": "createWebsite",
-            "findWebsitesByUser": "findWebsitesByUser",
-            "findWebsiteById":"findWebsiteById",
-            "updateWebsite":"updateWebsite",
-            "deleteWebsite":"deleteWebsite"
+            createWebsite: createWebsite,
+            findWebsitesByUser: findWebsitesByUser,
+            findWebsiteById:findWebsiteById,
+            updateWebsite:updateWebsite,
+            deleteWebsite:deleteWebsite
         };
         return api;
 
@@ -33,14 +33,16 @@
                 description: website.description
             };
             websites.push(website_new);
+            return website_new;
         }
 
 
         function findWebsitesByUser(userId) {
             websites_list=[];
             for (var w in websites){
-                if (websites[w].developerId ===  parseInt(userId)){
-                websites_list.push(websites[w]);
+                if (websites[w].developerId ===  userId)
+                {
+                    websites_list.push(websites[w]);
                 }
             }
             return websites_list;
@@ -50,7 +52,7 @@
         function findWebsiteById(websiteId) {
             for (var w in websites){
                 website = websites[w];
-                if (website._id ===  parseInt(websiteId)){
+                if (website._id ===  websiteId){
                     return website;
                 }
             }
@@ -61,7 +63,7 @@
         function updateWebsite(websiteId, website) {
             for (var w in websites){
                 currentWebsite = websites[w];
-                if (currentWebsite._id ===  parseInt(websiteId)){
+                if (currentWebsite._id ===  websiteId){
                     currentWebsite.name = website.name;
                     currentWebsite.developerId = website.developerId;
                     currentWebsite.description = website.description;
@@ -74,7 +76,7 @@
         function deleteWebsite(websiteId) {
             for (var i in websites){
                 website = websites[i];
-                if (website._id ===  parseInt(websiteId)){
+                if (website._id ===  websiteId){
                     websites.splice(i, 1);
                     return true;
                 }

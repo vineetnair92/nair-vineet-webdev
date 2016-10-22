@@ -18,7 +18,7 @@
         vm.back = back;
 
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
         }
 
         init();
@@ -57,9 +57,10 @@
         vm.pageEdit = pageEdit;
         vm.pageCreate=pageCreate;
         vm.back = back;
+        vm.clear=clear;
 
         function init() {
-            vm.websites = PageService.findPagesByWebsiteId(vm.websiteId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
         }
         init();
 
@@ -82,8 +83,8 @@
 
         function pageCreate(page) {
             if (page) {
-                page = PageService.createPage(vm.websiteId, page);
-                if (page==null) {
+                var returnedpage = PageService.createPage(vm.websiteId, page);
+                if (!returnedpage) {
                     vm.alert = "page could not be created";
                 } else {
                     vm.success = "Page created successfully";
@@ -96,12 +97,18 @@
         function back() {
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
+
+        function clear(){
+            vm.alert="";
+            vm.success="";
+            }
     }
 
     function EditPageController($location, $routeParams, PageService ) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.websiteId = $routeParams["wid"];
+        vm.pageId=$routeParams["pid"];
         vm.profile = profile;
         vm.pageOpen = pageOpen;
         vm.pageNew = pageNew;
@@ -109,10 +116,11 @@
         vm.pageUpdate = pageUpdate;
         vm.pageDelete = pageDelete;
         vm.back = back;
+        vm.clear=clear;
 
         function init() {
-            vm.pages = WebsiteService.findPageByWebsiteId(vm.websiteId);
-            vm.page = WebsiteService.findPageById(vm.pageId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            vm.page = PageService.findPageById(vm.pageId);
         }
 
         init();
@@ -140,8 +148,8 @@
 
 
         function pageUpdate(page) {
-            page = WebsiteService.updateWebsite(vm.pageId, page);
-            if (page==null) {
+            page = PageService.updatePage(vm.pageId, page);
+            if (!page) {
                 vm.alert = "page could not be updated";
             } else {
                 vm.success = "Page updated successfully";
@@ -150,7 +158,7 @@
 
         function pageDelete() {
             var response = PageService.deletePage(vm.pageId);
-            if (response==null) {
+            if (!response) {
                 vm.alert = "page could not be deleted";
             } else {
                 vm.success = "Page deleted successfully";
@@ -158,6 +166,10 @@
             }
         }
 
+        function clear(){
+            vm.alert="";
+            vm.success="";
+        }
 
     }
 })();

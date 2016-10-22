@@ -14,29 +14,31 @@
         ];
 
         var api = {
-            "createPage": "createPage",
-            "findPageByWebsiteId": "findPageByWebsiteId",
-            "findPageById":"findPageById",
-            "updatePage":"updatePage",
-            "deletePage":"deletePage"
+            createPage: createPage,
+            findPageByWebsiteId: findPageByWebsiteId,
+            findPageById:findPageById,
+            updatePage:updatePage,
+            deletePage:deletePage
         };
         return api;
 
         function createPage(websiteId,page) {
             var page_new= {
-                _id: (new Date()).getTime().toString(),
+                _id: (new Date()).getTime() + "",
                 name:page.name,
                 websiteId: websiteId,
                 description: page.description
             };
             pages.push(page_new);
+            return page_new;
         }
 
 
         function findPageByWebsiteId(websiteId) {
-            pages_list=[];
+            var pages_list=[];
             for (var p in pages){
-                if (pages[p].websiteId ===  parseInt(websiteId)){
+                if (pages[p].websiteId === websiteId)
+                {
                     pages_list.push(pages[p]);
                 }
             }
@@ -46,8 +48,8 @@
 
         function findPageById(pageId) {
             for (var p in pages){
-                page = pages[p];
-                if (page._id ===  parseInt(pageId)){
+                var page = pages[p];
+                if (page._id === pageId){
                     return page;
                 }
             }
@@ -57,21 +59,21 @@
 
         function updatePage(pageId, page) {
             for (var p in pages){
-                currentPage = pages[p];
-                if (currentPage._id ===  parseInt(pageId)){
+                var currentPage = pages[p];
+                if (currentPage._id === pageId){
                     currentPage.name = page.name;
-                    currentPage.websiteId= page.websiteId;
-                    currentPage.description= page.description;
+                    currentPage.description = page.description;
                     return true;
                 }
-                return false;
             }
+            return false;
+
         }
 
         function deletePage(pageId) {
             for (var i in pages){
-                page = pages[i];
-                if (page._id ===  parseInt(pageIdId)){
+                var returnedPage = pages[i];
+                if (returnedPage._id === pageId){
                     pages.splice(i, 1);
                     return true;
                 }

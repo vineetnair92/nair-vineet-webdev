@@ -14,13 +14,13 @@
         vm.pageId  = $routeParams.pid;
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
-        vm.newWidget = newWidget;
-        vm.editWidget = editWidget;
+        vm.widgetNew = widgetNew;
+        vm.widgetEdit = widgetEdit;
         vm.profile = profile;
         vm.back=back;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPage(vm.pageid);
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
         }
         init();
 
@@ -29,23 +29,22 @@
         }
 
 
-        function checkSafeHtml(html) {
-            return $sce.trustAsHtml(html);
+        function checkSafeHtml(widget) {
+            return $sce.trustAsHtml(widget.text);
         }
 
-        function checkSafeYouTubeUrl(url) {
-            var parts = url.split('/');
+        function checkSafeYouTubeUrl(widget) {
+            var parts = widget.url.split('/');
             var id = parts[parts.length - 1];
-            url = "https://www.youtube.com/embed/"+id;
-            console.log(url);
+            var url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);
         }
 
-        function newWidget() {
+        function widgetNew() {
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/new");
         }
 
-        function editWidget(widget) {
+        function widgetEdit(widget) {
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
         }
 
@@ -64,31 +63,33 @@
         vm.profile = profile;
         vm.widgetCreate = widgetCreate;
         vm.back = back;
-
-        function init() {
-//            vm.widgets = WidgetService.findWidgetsForPage(vm.pageId)
-        }
-        init();
+        vm.clear=clear;
 
         function profile() {
             $location.url("/user/" + vm.userId);
         }
 
 
-        function widgetCreate(website) {
-            var widget = {};
-            widget.widgetType = widgetType;
+        function widgetCreate(widgetType) {
+            var widget={};
+            widget.widgetType=widgetType;
             widget = WidgetService.createWidget(vm.pageId, widget);
-            if (widget) {
+            if (!widget) {
+                vm.alert = "widget could not be created";
+            } else {
                 vm.success = "Widget created successfully";
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
-            } else {
-                vm.alert = "widget could not be created";
             }
         }
 
         function back() {
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+        }
+
+        function clear()
+        {
+            vm.alert="";
+            vm.success="";
         }
     }
 
@@ -103,6 +104,7 @@
         vm.widgetUpdate = widgetUpdate;
         vm.widgetDelete = widgetDelete;
         vm.back = back;
+        vm.clear=clear;
 
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
@@ -120,7 +122,7 @@
 
         function widgetUpdate(widget) {
             widget = WidgetService.updateWidget(vm.widgetId, widget);
-            if (widget==null) {
+            if (!widget) {
                 vm.alert = "widget could not be updated";
             } else {
                 vm.success = "Widget updated successfully";
@@ -129,11 +131,16 @@
 
         function widgetDelete() {
             var response = WidgetService.deleteWidget(vm.widgetId);
-            if (response==null) {
+            if (response) {
                 vm.alert = "widget could not be deleted";
             } else {
                 vm.success = "Widget deleted successfully";
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");            }
+        }
+
+        function clear() {
+            vm.success = "";
+            vm.alert = "";
         }
     }
 })();

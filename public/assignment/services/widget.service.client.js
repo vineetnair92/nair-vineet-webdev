@@ -21,7 +21,7 @@
 
         var api = {
             createWidget: createWidget,
-            findWidgetsForPage: findWidgetsForPage,
+            findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
             deleteWidget:deleteWidget
@@ -31,30 +31,33 @@
 
         function createWidget(pageId,widget) {
             var widget_new= {
-                _id: (new Date()).getTime().toString(),
-                widgetType:widget.widgetType,
+                _id: (new Date()).getTime()+ "",
+                widgetType: widget.widgetType,
                 pageId: pageId,
                 size: widget.size,
-                text:widget.text
+                text:widget.text,
+                url: "",
+                width: "100%"
             };
             widgets.push(widget_new);
+            return widget_new;
         }
 
 
-        function findWidgetsForPage(pageId) {
+        function findWidgetsByPageId(pageId) {
             var widgets_list=[];
             for (var w in widgets){
-                if (widgets[w].pageId ===  parseInt(pageId)){
-                    websites_list.push(widgets[w]);
+                if (widgets[w].pageId === pageId){
+                    widgets_list.push(widgets[w]);
                 }
             }
-            return websites_list;
+            return widgets_list;
         }
 
 
         function findWidgetById(widgetId) {
             for(var w in widgets) {
-                if(widgets[w]._id === parseInt(widgetId)) {
+                if(widgets[w]._id === widgetId) {
                     return widgets[w];
                 }
             }
@@ -65,11 +68,13 @@
         function updateWidget(widgetId, widget) {
             for (var w in widgets){
                 currentWidget = widgets[w];
-                if (currentWebsite._id ===  parseInt(widgetId)){
+                if (currentWidget._id ===  widgetId){
                     currentWidget.widgetType=widget.widgetType;
                     currentWidget.pageId= widget.pageId;
                     currentWidget.size= widget.size;
                     currentWidget.text=widget.text;
+                    currentWidget.url= widget.url;
+                    currentWidget.width= widget.width;
                     return true;
                 }
                 return false;
@@ -79,7 +84,7 @@
         function deleteWidget(widgetId) {
             for (var i in widgets){
                 widget = widgets[i];
-                if (widget._id ===  parseInt(widgetId)){
+                if (widget._id ===  widgetId){
                     widgets.splice(i, 1);
                     return true;
                 }

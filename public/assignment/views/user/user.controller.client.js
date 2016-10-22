@@ -10,13 +10,28 @@
     function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
-        function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            if(user === null) {
-                vm.error = "No such user";
-            } else {
+        vm.register=register;
+        vm.clear=clear;
+        function login(user) {
+            if(user){
+            var user = UserService.findUserByCredentials(user.username, user.password);
+            if(user) {
                 $location.url("/user/" + user._id);
+            } else {
+                vm.alert = "No such user";
             }
+            } else {
+                vm.alert="Enter details first";
+            }
+
+        }
+        function register()
+        {
+            $location.url("/register");
+        }
+
+        function clear() {
+            vm.alert = "";
         }
     }
 
@@ -24,22 +39,33 @@
         var vm=this;
         vm.register=register;
         vm.cancel=cancel;
+        vm.clear=clear;
         function register(user) {
-            if(user.password === user.verifyPassword)
-            {
-                user = UserService.createUser(user);
-                if(user==null){
-                    vm.error="user cannot Register";
-                } else {
-                    $location.url("/user/"+user._id);
+            if (user) {
+                if (user.password === user.verifyPassword && user.password) {
+                    regUser = UserService.createUser(user);
+                    if (regUser) {
+                        $location.url("/user/" + user._id);
+                    } else {
+                        vm.alert = "user cannot Register";
+                    }
                 }
+                else {
+                    vm.alert = "Passwords do not match";
+                }
+            } else {
+                vm.alert = "Enter a username and password";
             }
-            else vm.error="Passwords do not match";
         }
-    }
 
-    function cancel() {
-        $location.url("/login");
+        function clear() {
+            vm.alert = "";
+        }
+
+        function cancel() {
+            $location.url("/login");
+        }
+
     }
 
 
@@ -49,7 +75,7 @@
         vm.updateUser = updateUser;
         vm.website = website;
         vm.logout = logout;
-
+        vm.clear=clear;
 
         function init() {
             vm.user = UserService.findUserById(vm.userId);
@@ -74,5 +100,9 @@
             $location.url("/login");
         }
 
+        function clear() {
+            vm.alert = "";
+            vm.success = "";
+        }
     }
 })();

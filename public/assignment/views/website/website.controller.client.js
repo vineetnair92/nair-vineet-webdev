@@ -9,7 +9,7 @@
 
     function WebsiteListController($location, $routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
+        vm.userId = $routeParams.uid;
         vm.profile = profile;
         vm.websiteOpen = websiteOpen;
         vm.websiteNew = websiteNew;
@@ -41,20 +41,19 @@
         function back(){
             $location.url("/user/" + vm.userId);
         }
-
-
     }
 
 
     function NewWebsiteController($location,$routeParams, WebsiteService ) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
+        vm.userId = $routeParams.uid;
         vm.profile = profile;
         vm.websiteOpen = websiteOpen;
         vm.websiteNew = websiteNew;
         vm.websiteEdit = websiteEdit;
         vm.websiteCreate = websiteCreate;
         vm.back = back;
+        vm.clear = clear;
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
@@ -95,6 +94,12 @@
         function back() {
             $location.url("/user/" + vm.userId + "/website");
         }
+
+        function clear() {
+            vm.alert = "";
+            vm.success = "";
+        }
+
     }
 
     function EditWebsiteController($location, $routeParams, WebsiteService ) {
@@ -108,6 +113,7 @@
         vm.websiteUpdate = websiteUpdate;
         vm.websiteDelete = websiteDelete;
         vm.back = back;
+        vm.clear=clear;
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
@@ -157,6 +163,11 @@
                 vm.success = "Website deleted successfully";
                 $location.url("/user/" + vm.userId + "/website");
             }
+        }
+
+        function clear() {
+            vm.alert = "";
+            vm.success = "";
         }
     }
     })();

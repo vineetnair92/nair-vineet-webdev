@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.html">
+            <a ng-click="model.back()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -18,14 +18,29 @@
 
 
 <div class="container-fluid font-increase">
+    <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
+        <button ng-click="model.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Success!</strong> {{model.success}}
+    </div>
+
+    <div ng-if="model.alert" class="alert alert-danger alert-dismissible" role="alert">
+        <button ng-click="model.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>FAILED!!</strong> {{model.alert}}
+    </div>
+
+
     <form class="widget-padding">
         <div class="form-group">
-            <a href="widget-heading.html">Header
+            <a ng-click="model.widgetCreate('HEADER')">Header
             </a>
         </div>
 
         <div class="form-group">
-            <a href="#">
+            <a >
                 Label
             </a>
         </div>
@@ -55,13 +70,13 @@
         </div>
 
         <div class="form-group">
-            <a href="widget-image.html">
+            <a ng-click="model.widgetCreate('IMAGE')">
                 Image
             </a>
         </div>
 
         <div class="form-group">
-            <a href="widget-youtube.html">
+            <a ng-click="model.widgetCreate('YOUTUBE')">
                 YouTube
             </a>
         </div>
@@ -82,7 +97,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-text pull-right">
-        <a href="profile.html">
+        <a ng-click="model.profile()">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>

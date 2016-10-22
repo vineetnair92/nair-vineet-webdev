@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="widget-list.html">
+            <a ng-click="model.back()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -13,7 +13,7 @@
         </div>
 
         <div class="navbar-text pull-right">
-            <a href="widget-list.html" class="navbar-link">
+            <a ng-click="model.widgetUpdate(model.widget)">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
@@ -22,28 +22,46 @@
 
 
 <div class="container-fluid">
-        <form>
+
+    <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
+        <button ng-click="model.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Success!</strong> {{model.success}}
+    </div>
+
+    <div ng-if="model.alert" class="alert alert-danger alert-dismissible" role="alert">
+        <button ng-click="model.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>FAILED!!</strong> {{model.alert}}
+    </div>
+
+    <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name">
+                <input type="text" class="form-control" id="name" placeholder="Name"
+                       ng-model="model.widget.name" value="{{model.widget.name}}">
             </div>
             <div class="form-group">
                 <label for="title">Text</label>
-                <input  class="form-control" id="title" placeholder="Text" value="Tom Brady doubtful">
+                <input  class="form-control" id="title" placeholder="Text"
+                        ng-model="model.widget.text" value="{{model.widget.text}}">
             </div>
             <div class="form-group">
                 <label for="size">Size</label>
-                <input type="number" class="form-control" id="size" placeholder="Size" value="3">
+                <input type="number" class="form-control" id="size" placeholder="Size"
+                       ng-model="model.widget.size" value="{{model.widget.size}}">
             </div>
             <div class="form-group">
                 <a class="btn btn-danger  btn-block"
-                   href="widget-list.html">Delete</a>
+                   ng-click="model.widgetDelete()">Delete</a>
             </div>
         </form>
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="navbar-text pull-right">
-            <a href="profile.html">
+            <a ng-click="model.profile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

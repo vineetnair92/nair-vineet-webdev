@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="page-list.html">
+            <a ng-click="model.back()">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -13,7 +13,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a href="widget-chooser.html">
+                <a ng-click="model.widgetNew()">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -23,99 +23,39 @@
 
 
 <div class="container-fluid">
-    <div>
+    <div ng-repeat="widget in model.widgets" >
         <div class ="widget-position">
-            <a href="widget-heading.html">
+            <a ng-click="model.widgetEdit(widget)">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <div>
-            <h1>GIZMODO</h1>
-        </div>
-    </div>
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADER" ng-switch="widget.size">
+                <h1 ng-switch-when="1">{{widget.text}}</h1>
+                <h2 ng-switch-when="2">{{widget.text}}</h2>
+                <h3 ng-switch-when="3">{{widget.text}}</h3>
+                <h4 ng-switch-when="4">{{widget.text}}</h4>
+                <h5 ng-switch-when="5">{{widget.text}}</h5>
+                <h6 ng-switch-when="6">{{widget.text}}</h6>
+            </div>
 
-    <div>
-        <div class ="widget-position">
-            <a href="widget-heading.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
+            <div ng-switch-when="HTML">
+                <div ng-bind-html="model.checkSafeHtml(widget.text)"></div>
+            </div>
 
-        <div>
-            <h2>Tom Brady doubtful </h2>
-        </div>
-    </div>
+            <div ng-switch-when="IMAGE">
+                <img width="{{widget.width}}" ng-src="{{widget.url}}">
+            </div>
 
-    <div>
-        <div class ="widget-position">
-            <a href="widget-image.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div>
-            <img src="http://cdnph.upi.com/sv/b/upi/UPI-9211475125250/2016/1/7b14a3364d1dea958796ccec05561d2b/New-England-Patriots-Julian-Edelman-coy-on-question-of-playing-QB.jpg" width="100%">
-        </div>
-    </div>
-
-    <div>
-        <div class ="widget-position">
-            <a href="#">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div>
-            <p>
-                The New England Patriots are about to find out if having two Gronkowskis on the roster is better than having one.
-            </p>
-        </div>
-    </div>
-
-    <div>
-        <div class ="widget-position">
-            <a href="widget-heading.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div>
-            <h2>Kabali sets record </h2>
-        </div>
-    </div>
-
-    <div>
-        <div class="widget-position">
-            <a href="widget-youtube.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div class="youtube-widget">
-            <iframe src="https://www.youtube.com/embed/9mdJV5-eias"></iframe>
-        </div>
-    </div>
-
-    <div>
-        <div class ="widget-position">
-            <a href="#">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div>
-            <p>
-                The much-awaited trailer of Superstar Rajnikanth starring “Kabali” was released on
-                Sunday with the actor appearing as a salt and pepper styled gangster along with a host
-                of other actors including Radhika Apte who plays opposite to “Thalaivar”.
-            </p>
+            <div ng-switch-when="YOUTUBE" class="youtube-widget">
+                <iframe width="{{widget.width}}" ng-src="{{model.checkSafeYouTubeUrl(widget.text)}}"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 </div>
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="navbar-text pull-left">
@@ -131,7 +71,7 @@
     </div>
 
     <div class="navbar-text pull-right">
-        <a href="profile.html">
+        <a ng-click="model.profile()">
             <span class="glyphicon glyphicon-user"></span>
         </a>
     </div>

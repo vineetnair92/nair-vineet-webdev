@@ -1,16 +1,16 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-text pull-left">
-                <a href="website-list.html">
+                <a ng-click="model.back()">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
             <div class="navbar-header pull-left">
-                <a class="navbar-brand" href="#">Pages</a>
+                <a class="navbar-brand">Pages</a>
             </div>
             <p class="navbar-text pull-right">
-                <a href="page-new.html" class="navbar-link">
+                <a ng-click="model.pageNew()">
                             <span class="glyphicon glyphicon-plus">
                             </span>
                 </a>
@@ -20,46 +20,10 @@
 
     <div class="container-fluid">
         <form>
-            <div class="form-group">
-                <a href="widget-list.html">Blog Post</a>
+            <div class="form-group" ng-repeat="page in model.pages">
+                <a ng-click="model.pageOpen(page)">{{page.name}}</a>
                 <p class ="pull-right">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="widget-list.html">Blogs</a>
-                <p class ="pull-right">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="widget-list.html">Home</a>
-                <p class ="pull-right">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="widget-list.html">About</a>
-                <p class ="pull-right">
-                    <a href="page-edit.html">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
-                </p>
-            </div>
-
-            <div class="form-group">
-                <a href="widget-list.html">Contact Us</a>
-                <p class ="pull-right">
-                    <a href="page-edit.html">
+                    <a ng-click="model.pageEdit(page)">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </p>
@@ -69,7 +33,7 @@
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="navbar-text pull-right">
-            <a href="profile.html">
+            <a ng-click="model.profile()">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

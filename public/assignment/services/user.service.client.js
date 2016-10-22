@@ -15,31 +15,32 @@
         ];
 
         var api = {
-            "createUser": "createUser",
-            "findUserById": "findUserById",
-            "findUserByUsername":"findUserByUsername",
-            "findUserByCredentials":"findUserByCredentials",
-            "updateUser":"updateUser",
-            "deleteUser":"deleteUser"
+            createUser: createUser,
+            findUserById: findUserById,
+            findUserByUsername:findUserByUsername,
+            findUserByCredentials:findUserByCredentials,
+            updateUser:updateUser,
+            deleteUser:deleteUser
         };
         return api;
 
         function createUser(user) {
             var user_new= {
-                _id: (new Date()).getTime().toString(),
+                _id: (new Date()).getTime() + "",
                 username:user.username,
                 password: user.password,
                 firstName: user.firstName,
                 lastName: user.lastName
             };
             users.push(user_new);
+            return user_new;
         }
 
 
         function findUserById(userId) {
             for (var u in users){
                 user = users[u];
-                if (user._id ===  parseInt(userId)){
+                if (user._id === userId){
                     return user;
                 }
             }
@@ -71,7 +72,7 @@
         function updateUser(userId, user) {
             for (var u in users){
                 currentUser = users[u];
-                if (currentUser._id ===  parseInt(userId)){
+                if (currentUser._id === userId){
                     currentUser.firstName = user.firstName;
                     currentUser.lastName = user.lastName;
                     return true;
@@ -83,7 +84,7 @@
         function deleteUser(userId) {
             for (var i in users){
                 user = users[i];
-                if (user._id ===  parseInt(userId)){
+                if (user._id ===  userId){
                     users.splice(i, 1);
                 }
             }
