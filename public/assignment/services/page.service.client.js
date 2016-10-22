@@ -50,7 +50,7 @@
             for (var p in pages){
                 var page = pages[p];
                 if (page._id === pageId){
-                    return page;
+                    return JSON.parse(JSON.stringify(page));
                 }
             }
             return null;

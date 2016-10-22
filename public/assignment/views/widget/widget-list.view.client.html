@@ -42,7 +42,7 @@
             </div>
 
             <div ng-switch-when="HTML">
-                <div ng-bind-html="model.checkSafeHtml(widget.text)"></div>
+                <div ng-bind-html="model.checkSafeHtml(widget)"></div>
             </div>
 
             <div ng-switch-when="IMAGE">
@@ -50,7 +50,7 @@
             </div>
 
             <div ng-switch-when="YOUTUBE" class="youtube-widget">
-                <iframe width="{{widget.width}}" ng-src="{{model.checkSafeYouTubeUrl(widget.text)}}"
+                <iframe width="{{widget.width}}" ng-src="{{model.checkSafeYouTubeUrl(widget)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
         </div>

@@ -57,13 +57,17 @@
 
     function NewWidgetController($location,$routeParams, WidgetService ) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
-        vm.websiteId = $routeParams["wid"];
-        vm.pageId = $routeParams["pid"];
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
         vm.profile = profile;
         vm.widgetCreate = widgetCreate;
         vm.back = back;
         vm.clear=clear;
+
+        function init() {
+        }
+        init();
 
         function profile() {
             $location.url("/user/" + vm.userId);
@@ -74,11 +78,11 @@
             var widget={};
             widget.widgetType=widgetType;
             widget = WidgetService.createWidget(vm.pageId, widget);
-            if (!widget) {
-                vm.alert = "widget could not be created";
-            } else {
+            if (widget) {
                 vm.success = "Widget created successfully";
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
+            } else {
+                vm.alert = "widget could not be created";
             }
         }
 
@@ -96,10 +100,10 @@
 
     function EditWidgetController($location, $routeParams, WidgetService ) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
-        vm.websiteId = $routeParams["wid"];
-        vm.pageId = $routeParams["pid"];
-        vm.widgetId = $routeParams["wgid"];
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
+        vm.widgetId = $routeParams.wgid;
         vm.profile = profile;
         vm.widgetUpdate = widgetUpdate;
         vm.widgetDelete = widgetDelete;
@@ -122,20 +126,21 @@
 
         function widgetUpdate(widget) {
             widget = WidgetService.updateWidget(vm.widgetId, widget);
-            if (!widget) {
-                vm.alert = "widget could not be updated";
-            } else {
+            if (widget) {
                 vm.success = "Widget updated successfully";
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+            } else {
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");            }
         }
 
         function widgetDelete() {
             var response = WidgetService.deleteWidget(vm.widgetId);
             if (response) {
-                vm.alert = "widget could not be deleted";
-            } else {
                 vm.success = "Widget deleted successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");            }
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+            } else {
+                vm.alert = "widget could not be deleted";
+            }
         }
 
         function clear() {

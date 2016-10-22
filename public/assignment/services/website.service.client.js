@@ -53,8 +53,7 @@
             for (var w in websites){
                 website = websites[w];
                 if (website._id ===  websiteId){
-                    return website;
-                }
+                    return JSON.parse(JSON.stringify(website));                }
             }
             return null;
         }
