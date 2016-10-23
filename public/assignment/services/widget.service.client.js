@@ -57,8 +57,9 @@
 
         function findWidgetById(widgetId) {
             for(var w in widgets) {
-                if (widgets[w]._id === widgetId) {
-                    return JSON.parse(JSON.stringify(widgets[w]));
+                var widget=widgets[w];
+                if(widget._id === widgetId) {
+                    return JSON.parse(JSON.stringify(widget));
                 }
             }
             return null;
@@ -77,10 +78,8 @@
                     currentWidget.width= widget.width;
                     return true;
                 }
-                else {
-                    return false;
-                }
             }
+            return false;
 
         }
 

@@ -130,17 +130,17 @@
                 vm.success = "Widget updated successfully";
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
             } else {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");            }
+                vm.alert = "widget could not be updated";
+            }
         }
 
         function widgetDelete() {
             var response = WidgetService.deleteWidget(vm.widgetId);
-            if (response) {
-                vm.success = "Widget deleted successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-            } else {
+            if (!response) {
                 vm.alert = "widget could not be deleted";
-            }
+            } else {
+                vm.success = "Widget deleted successfully";
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");            }
         }
 
         function clear() {
