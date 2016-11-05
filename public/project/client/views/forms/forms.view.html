@@ -1,0 +1,32 @@
+<h1 class="page-header">Forms</h1>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#/forms">Forms</a></li>
+    <li role="presentation"><a href="">Fields</a></li>
+</ul>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr scope="row">
+            <th id="dark-th"><span class="glyphicon glyphicon-triangle-bottom"></span> Form Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input ng-model="model.form.title" type="text" placeholder="name" id="full-width"></input></td>
+
+            <td class="text-center">
+                <a ng-click="model.addForm(model.form)" role="button" class="glyphicon glyphicon-plus" id="big-icon"></a>
+                <a ng-click="model.updateForm(model.form)" role="button" class="glyphicon glyphicon-ok pull-right" id="big-icon"></a>
+            </td>
+        </tr>
+        <tr ng-repeat="form in model.forms">
+                <td><a role="button" ng-click="model.goToFields($index)">{{form.title}}<a/></td>
+                <td class="text-center">
+                    <a ng-click="model.deleteForm($index)" role="button" class="glyphicon glyphicon-remove" id="big-icon"></a>
+                    <a ng-click="model.selectForm($index)" role="button" class="glyphicon glyphicon-pencil pull-right" id="big-icon"></a>
+                </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

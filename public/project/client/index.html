@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='WebAppMaker'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>Project Home Page</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="client/css/style.css" rel="stylesheet"/>
+
+    <script src="client/services/user.service.client.js"></script>
+    <script src="client/services/website.service.client.js"></script>
+    <script src="client/services/page.service.client.js"></script>
+    <script src="client/services/widget.service.client.js"></script>
+    <script src="client/views/user/user.controller.client.js"></script>
+    <script src="views/website/website.controller.client.js"></script>
+    <script src="client/views/page/page.controller.client.js"></script>
+    <script src="views/widget/widget.controller.client.js"></script>
+</head>
+<body>
+    <div ng-view></div>
+</body>
+</html>
