@@ -13,7 +13,7 @@
                     </a>
                 </div>
                 <div class="sidebar-plus navbar-text pull-right">
-                    <a ng-click="model.WebsiteNew()" >
+                    <a ng-click="model.websiteNew()" >
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
                 </div>
@@ -54,21 +54,6 @@
 
 
         <div class="col-sm-8">
-
-            <div ng-if="model.success" class="alert alert-success alert-dismissible" role="alert">
-                <button ng-click="model.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <strong>Success!</strong> {{model.success}}
-            </div>
-
-            <div ng-if="model.alert" class="alert alert-danger alert-dismissible" role="alert">
-                <button ng-click="model.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <strong>FAILED!!</strong> {{model.alert}}
-            </div>
-
             <form>
                 <div class="form-group">
                     <label for="name">Name</label>

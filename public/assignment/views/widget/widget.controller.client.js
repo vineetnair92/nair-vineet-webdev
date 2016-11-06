@@ -1,4 +1,3 @@
-/*Created by Vineet Nair on 10/19/2016.*/
 (function () {
     angular
         .module('WebAppMaker')
@@ -20,7 +19,13 @@
         vm.back=back;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                }, function (error) {
+                    vm.alert = "No such widgets for this page";
+                });
         }
         init();
 
@@ -77,13 +82,15 @@
         function widgetCreate(widgetType) {
             var widget={};
             widget.widgetType=widgetType;
-            widget = WidgetService.createWidget(vm.pageId, widget);
-            if (widget) {
-                vm.success = "Widget created successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
-            } else {
-                vm.alert = "widget could not be created";
-            }
+            WidgetService
+                .createWidget(vm.pageId, widget)
+                .then(function (response) {
+                    var widget = response.data;
+                    vm.success = "Widget created successfully";
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
+                }, function (error) {
+                    vm.alert = "Widget could not be created";
+                });
         }
 
         function back() {
@@ -109,9 +116,16 @@
         vm.widgetDelete = widgetDelete;
         vm.back = back;
         vm.clear=clear;
+        vm.url=url;
 
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .then(function (response) {
+                    vm.widget = response.data;
+                }, function (error) {
+                    vm.alert = "No such widget found";
+                });
         }
 
         init();
@@ -125,22 +139,29 @@
         }
 
         function widgetUpdate(widget) {
-            widget = WidgetService.updateWidget(vm.widgetId, widget);
-            if (widget) {
-                vm.success = "Widget updated successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-            } else {
-                vm.alert = "widget could not be updated";
-            }
+            WidgetService
+                .updateWidget(vm.widgetId, widget)
+                .then(function (response) {
+                    vm.success = "Widget updated successfully";
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }, function (error) {
+                    vm.alert = "Widget could not be updated";
+                });
         }
 
         function widgetDelete() {
-            var response = WidgetService.deleteWidget(vm.widgetId);
-            if (!response) {
-                vm.alert = "widget could not be deleted";
-            } else {
-                vm.success = "Widget deleted successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");            }
+            WidgetService
+                .deleteWidget(vm.widgetId)
+                .then(function (response) {
+                    vm.success = "Widget deleted successfully";
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                }, function (error) {
+                    vm.alert = "Widget could not be deleted";
+                });
+        }
+
+        function url() {
+            return "/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + vm.widgetId;
         }
 
         function clear() {

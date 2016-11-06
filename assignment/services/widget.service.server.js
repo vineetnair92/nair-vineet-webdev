@@ -1,8 +1,4 @@
-/**
- * Created by Vineet Nair on 11/5/2016.
- */
 module.exports = function (app) {
-
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -32,7 +28,7 @@ module.exports = function (app) {
             "size": 1,
             "text": "",
             "url": "",
-            "width": "100%"
+            "width": "100"
         };
         widgets.push(newWidget);
         if (newWidget) {

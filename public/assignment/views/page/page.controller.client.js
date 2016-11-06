@@ -18,7 +18,13 @@
         vm.back = back;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function (response) {
+                    vm.pages = response.data;
+                }, function (error) {
+                    vm.alert = "No such pages for this website";
+                });
         }
 
         init();
@@ -60,7 +66,13 @@
         vm.clear=clear;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function (response) {
+                    vm.pages = response.data;
+                }, function (error) {
+                    vm.alert = "No such pages for this website";
+                });
         }
         init();
 
@@ -83,12 +95,14 @@
 
         function pageCreate(page) {
             if (page) {
-                var returnedpage = PageService.createPage(vm.websiteId, page);
-                if (!returnedpage) {
-                    vm.alert = "page could not be created";
-                } else {
-                    vm.success = "Page created successfully";
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");                }
+                PageService
+                    .createPage(vm.websiteId, page)
+                    .then(function (response) {
+                        vm.success = "Page created successfully";
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    }, function (error) {
+                        vm.alert = "Page could not be created.";
+                    });
             } else {
                 vm.alert = "No details found";
             }
@@ -119,8 +133,20 @@
         vm.clear=clear;
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function (response) {
+                    vm.pages = response.data;
+                }, function (error) {
+                    vm.alert = "No such pages for this website";
+                });
+            PageService
+                .findPageById(vm.pageId)
+                .then(function (response) {
+                    vm.page = response.data;
+                }, function (error) {
+                    vm.alert = "No such page found";
+                });
         }
 
         init();
@@ -148,23 +174,25 @@
 
 
         function pageUpdate(page) {
-            page = PageService.updatePage(vm.pageId, page);
-            if (!page) {
-                vm.alert = "page could not be updated";
-            } else {
-                vm.success = "Page updated successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");            }
+            PageService
+                .updatePage(vm.pageId, page)
+                .then(function (response) {
+                    vm.success = "Page updated successfully";
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                }, function (error) {
+                    vm.alert = "Page could not be updated";
+                });
         }
 
         function pageDelete() {
-            var response = PageService.deletePage(vm.pageId);
-            if (!response) {
-                vm.alert = "page could not be deleted";
-            } else {
-                vm.success = "Page deleted successfully";
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            }
-        }
+            PageService
+                .deletePage(vm.pageId)
+                .then(function (response) {
+                    vm.success = "Page deleted successfully";
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                }, function (error) {
+                    vm.alert = "Page could not be deleted";
+                });        }
 
         function clear(){
             vm.alert="";

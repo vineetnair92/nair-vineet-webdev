@@ -15,9 +15,16 @@
         vm.websiteNew = websiteNew;
         vm.websiteEdit = websiteEdit;
         vm.back = back;
+        vm.clear=clear;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (response) {
+                    vm.websites = response.data;
+                }, function (error) {
+                    vm.alert = "No such website for this user";
+                });
         }
 
         init();
@@ -41,6 +48,10 @@
         function back(){
             $location.url("/user/" + vm.userId);
         }
+
+        function clear() {
+            vm.alert = "";
+        }
     }
 
 
@@ -53,10 +64,16 @@
         vm.websiteEdit = websiteEdit;
         vm.websiteCreate = websiteCreate;
         vm.back = back;
-        vm.clear = clear;
+        vm.clear=clear;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (response) {
+                    vm.websites = response.data;
+                }, function (error) {
+                    vm.alert = "No such website for this user";
+                });
         }
         init();
 
@@ -79,13 +96,14 @@
 
         function websiteCreate(website) {
             if (website) {
-                website = WebsiteService.createWebsite(vm.userId, website);
-                if (website==null) {
-                    vm.alert = "website could not be created";
-                } else {
-                    vm.success = "Website created successfully";
-                    $location.url("/user/" + vm.userId + "/website");
-                }
+                WebsiteService
+                    .createWebsite(vm.userId, website)
+                    .then(function (response) {
+                        vm.success = "Website created successfully";
+                        $location.url("/user/" + vm.userId + "/website");
+                    }, function (error) {
+                        vm.alert = "Website could not be created";
+                    });
             } else {
                 vm.alert = "No details found";
             }
@@ -116,8 +134,20 @@
         vm.clear=clear;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (response) {
+                    vm.websites = response.data;
+                }, function (error) {
+                    vm.alert = "No such website for this user";
+                });
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(function (response) {
+                    vm.website = response.data;
+                }, function (error) {
+                    vm.alert = "No such website found";
+                });
         }
 
         init();
@@ -146,23 +176,25 @@
 
 
         function websiteUpdate(website) {
-            website = WebsiteService.updateWebsite(vm.websiteId, website);
-            if (website==null) {
-                vm.alert = "website could not be updated";
-            } else {
-                vm.success = "Website updated successfully";
-                $location.url("/user/" + vm.userId + "/website");
-            }
+            WebsiteService
+                .updateWebsite(vm.websiteId, website)
+                .then(function (response) {
+                    vm.success = "Website Updated successfully";
+                    $location.url("/user/" + vm.userId + "/website");
+                }, function (error) {
+                    vm.alert = "Website could not be updated.";
+                });
         }
 
         function websiteDelete() {
-            var response = WebsiteService.deleteWebsite(vm.websiteId);
-            if (response==null) {
-                vm.alert = "website could not be deleted";
-            } else {
-                vm.success = "Website deleted successfully";
-                $location.url("/user/" + vm.userId + "/website");
-            }
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .then(function (response) {
+                    vm.success = "Website deleted successfully";
+                    $location.url("/user/" + vm.userId + "/website");
+                }, function (error) {
+                    vm.alert = "Website could not be deleted.";
+                });
         }
 
         function clear() {

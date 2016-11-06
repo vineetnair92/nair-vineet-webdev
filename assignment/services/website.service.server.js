@@ -1,15 +1,15 @@
-/**
- * Created by Vineet Nair on 11/5/2016.
- */
 module.exports = function(app) {
     var websites = [
-        {_id: 321, name: 'facebook.com', uid: 123},
-        {_id: 432, name: 'wikipedia.org', uid: 123},
-        {_id: 543, name: 'twitter.com', uid: 234}
+        { "_id": "123", "name": "Facebook",    "developerId": "456" },
+        { "_id": "234", "name": "Tweeter",     "developerId": "456" },
+        { "_id": "456", "name": "Gizmodo",     "developerId": "456" },
+        { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
+        { "_id": "678", "name": "Checkers",    "developerId": "123" },
+        { "_id": "789", "name": "Chess",       "developerId": "234" }
     ];
 
-    app.get("/api/user/:userId/website", findAllWebsitesForUser);
-    app.post("/api/user/:userId/website", createWebsite);
+    app.post("/api/user/:uid/website", createWebsite);
+    app.get("/api/user/:uid/website", findAllWebsitesForUser);
     app.get("/api/website/:wid", findWebsiteById);
     app.put("/api/website/:wid", updateWebsite);
     app.delete("/api/website/:wid", deleteWebsite);
@@ -18,10 +18,10 @@ module.exports = function(app) {
         var website = req.body;
         var userId = req.params.uid;
         var newWebsite = {
-            _id: (new Date()).getTime() + "",
-            name: website.name,
-            description: website.description,
-            uid: userId
+            "_id": (new Date()).getTime() + "",
+            "name": website.name,
+            "description": website.description,
+            "developerId": userId
         };
         websites.push(newWebsite);
         if (newWebsite) {
@@ -32,10 +32,10 @@ module.exports = function(app) {
     }
 
     function findAllWebsitesForUser(req, res) {
-        var uid = req.params.userId;
+        var uid = req.params.uid;
         var result = [];
         for(var w in websites) {
-            if(websites[w].uid == uid) {
+            if(websites[w].developerId === uid) {
                 result.push(websites[w]);
             }
         }

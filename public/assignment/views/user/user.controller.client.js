@@ -14,12 +14,13 @@
         vm.clear=clear;
         function login(user) {
             if(user){
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
+            UserService.findUserByCredentials(user.username, user.password)
+                .then(function (response){
+                    var user = response.data;
                 $location.url("/user/" + user._id);
-            } else {
+                    }, function (error) {
                 vm.alert = "No such user";
-            }
+            });
             } else {
                 vm.alert="Enter details first";
             }
@@ -43,12 +44,14 @@
         function register(user) {
             if (user) {
                 if (user.password === user.verifyPassword && user.password) {
-                    regUser = UserService.createUser(user);
-                    if (regUser) {
-                        $location.url("/user/" + user._id);
-                    } else {
-                        vm.alert = "user cannot Register";
-                    }
+                    UserService
+                        .createUser(user)
+                        .then(function (response) {
+                            var user = response.data;
+                            $location.url("/user/" + user._id);
+                        }, function (error) {
+                            vm.alert = "Cannot Register user";
+                        });
                 }
                 else {
                     vm.alert = "Passwords do not match";
@@ -72,24 +75,32 @@
     function ProfileController($location, $routeParams, UserService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
-        vm.updateUser = updateUser;
+        vm.UpdateUser = UpdateUser;
         vm.website = website;
         vm.logout = logout;
         vm.clear=clear;
+        vm.deleteUser=deleteUser;
 
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            UserService
+                .findUserById(vm.userId)
+                .then(function (response) {
+                    vm.user = response.data;
+                }, function (error) {
+                    vm.alert = "No such user";
+                });
         }
 
         init();
 
-        function updateUser(user) {
-            user = UserService.updateUser(vm.userId, user);
-            if (user === null) {
-                vm.error = "User could not update profile";
-            } else {
-                vm.success = "User updated";
-            }
+        function UpdateUser(user) {
+            UserService
+                .updateUser(user)
+                .then(function (response) {
+                    vm.success = "User updated";
+                }, function (error) {
+                    vm.alert = "User could not update profile";
+                });
         }
 
         function website() {
@@ -99,6 +110,17 @@
         function logout() {
             $location.url("/login");
         }
+
+        function deleteUser() {
+            UserService
+                .deleteUser(vm.userId)
+                .then(function (response) {
+                    $location.url("/login");
+                }, function (error) {
+                    vm.alert = "Account cannot be deleted";
+                });
+        }
+
 
         function clear() {
             vm.alert = "";
