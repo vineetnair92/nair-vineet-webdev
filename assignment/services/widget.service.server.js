@@ -1,4 +1,7 @@
 module.exports = function (app) {
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/assignment/upload' });
+
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -17,6 +20,9 @@ module.exports = function (app) {
     app.get("/api/widget/:wgid", findWidgetById);
     app.put("/api/widget/:wgid", updateWidget);
     app.delete("/api/widget/:wgid", deleteWidget);
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+
 
     function createWidget(req, res) {
         var pid = req.params.pid;
@@ -28,7 +34,7 @@ module.exports = function (app) {
             "size": 1,
             "text": "",
             "url": "",
-            "width": "100"
+            "width": "100%"
         };
         widgets.push(newWidget);
         if (newWidget) {
@@ -94,6 +100,31 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(400);
+    }
+
+    function uploadImage(req, res) {
+        var widgetId = req.body.widgetId;
+        var width = req.body.width;
+        var myFile = req.file;
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+
+
+        var originalname = myFile.originalname;
+        var filename = myFile.filename;
+        var path = myFile.path;
+        var destination = myFile.destination;
+        var size = myFile.size;
+        var mimetype = myFile.mimetype;
+
+        for (var i in widgets) {
+            if (widgets[i]._id === widgetId) {
+                widgets[i].url = "/assignment/upload/"+filename;
+                widgets[i].width = width;
+                var pageId = widgets[i].pageId;
+                res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            }
+        }
     }
 
 

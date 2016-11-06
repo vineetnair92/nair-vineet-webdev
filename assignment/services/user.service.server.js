@@ -5,7 +5,8 @@ module.exports = function(app) {
     var users = [
         {username: 'alice', password: 'alice', _id: 123, first: 'Alice', last: 'Wonderland'},
         {username: 'bob', password: 'bob', _id: 234, first: 'Bob', last: 'Dylan'},
-        {username: 'charlie', password: 'charlie', _id: 345, first: 'Charlie', last: 'Brown'}
+        {username: 'charlie', password: 'charlie', _id: 345, first: 'Charlie', last: 'Brown'},
+        {username: 'jannunzi', password: 'jannunzi', _id: 456,  first: 'Jose',   last: 'Annunzi' }
     ];
 
     app.post('/api/user', createUser);
