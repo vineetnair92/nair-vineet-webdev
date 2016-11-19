@@ -2,8 +2,9 @@
  * Created by Vineet Nair on 11/5/2016.
  */
 module.exports = function(app) {
-    require("./services/user.service.server.js")(app);
-    require("./services/website.service.server.js")(app);
-    require("./services/page.service.server.js")(app);
-    require("./services/widget.service.server.js")(app);
+    var models = require("./model/models.server")();
+    require("./services/user.service.server.js")(app, models);
+    require("./services/website.service.server.js")(app, models);
+    require("./services/page.service.server.js")(app, models);
+    require("./services/widget.service.server.js")(app, models);
 };
