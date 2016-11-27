@@ -17,7 +17,8 @@ module.exports = function () {
     return api;
 
 
-    function createWebsiteForUser(website) {
+    function createWebsiteForUser(uid,website) {
+        website._user = uid;
         console.log("Website created");
         return Website.create(website);
     }

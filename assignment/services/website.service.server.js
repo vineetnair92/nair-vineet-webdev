@@ -11,8 +11,9 @@ module.exports = function(app, models) {
 
     function createWebsite(req, res) {
         var newWebsite = req.body;
+        var userId = req.params.uid;
         websiteModel
-            .createWebsiteForUser(newWebsite)
+            .createWebsiteForUser(userId,newWebsite)
             .then(function (website) {
                 res.json(website);
             }, function (error) {

@@ -17,7 +17,10 @@
             UserService.findUserByCredentials(user.username, user.password)
                 .then(function (response){
                     var user = response.data;
-                $location.url("/user/" + user._id);
+                    if(user)
+                        $location.url("/user/" + user._id);
+                    else
+                        vm.alert="No such user found";
                     }, function (error) {
                 vm.alert = "No such user";
             });
