@@ -23,6 +23,7 @@ module.exports = function () {
         return Widget
             .find({_page: pageId})
             .then(function (widgets) {
+                widget.order=widgets.length;
                 console.log("Widget Created");
                 return Widget.create(widget);
             });
