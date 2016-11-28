@@ -15,10 +15,8 @@ module.exports = function (app, models) {
 
 
     function createWidget(req, res) {
-        var pid = req.params.pid;
-        var widget = req.body;
         widgetModel
-            .createWidget(pid, widget)
+            .createWidget(req.params.pid, req.body)
             .then(function (widget) {
                 res.json(widget);
             }, function (error) {
@@ -78,24 +76,21 @@ module.exports = function (app, models) {
     function uploadImage(req, res) {
         var widgetId = req.body.widgetId;
         var myFile = req.file;
-        var userId = req.body.userId;
-        var websiteId = req.body.websiteId;
-        var pageId= req.body.pageId;
+        var redirectUrl = req.body.urlRedirect;
         var filename = myFile.filename;
 
         var widget = {
-            url: "/assignment/upload/"+filename,
+            url: "/assignment/upload/" + filename
         };
 
         widgetModel
             .updateWidget(widgetId, widget)
-            .then(function (status) {
-                res.redirect("/assignment/#/user"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            .then(function (stats) {
+                res.redirect("/assignment/#" + redirectUrl);
             }, function (error) {
-                res.sendStatus(400).send(error);
+                res.sendStatus(400);
             });
     }
-
 
     function sortWidgets(req, res) {
         var pageId = req.params['pid'];
@@ -110,7 +105,5 @@ module.exports = function (app, models) {
                 res.sendStatus(400);
             });
     }
-
-
 
 };

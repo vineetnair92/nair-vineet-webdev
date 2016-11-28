@@ -81,7 +81,7 @@
 
         function widgetCreate(widgetType) {
             var widget={};
-            widget.widgetType=widgetType;
+            widget.type=widgetType;
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .then(function (response) {
@@ -142,6 +142,7 @@
             WidgetService
                 .updateWidget(vm.widgetId, widget)
                 .then(function (response) {
+                    console.log("Created widget!!")
                     vm.success = "Widget updated successfully";
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
                 }, function (error) {

@@ -64,7 +64,7 @@ module.exports = function (app, models) {
     function deletePage(req, res) {
         var pid = req.params.pid;
         pageModel
-            .deletePage(pid,page)
+            .deletePage(pid)
             .then(function (response) {
                 res.send(response);
             }, function (error) {

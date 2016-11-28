@@ -89,7 +89,7 @@ module.exports = function(app, models) {
     function deleteUser(req, res) {
         var uid = req.params.uid;
         userModel
-            .deleteUser(userId)
+            .deleteUser(uid)
             .then(function (response) {
                 res.json(response);
             }, function (error) {

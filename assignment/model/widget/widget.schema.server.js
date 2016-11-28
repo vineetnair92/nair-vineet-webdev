@@ -15,11 +15,11 @@ module.exports = function () {
         height: String,
         rows: Number,
         size: Number,
-        index: Number,
         class: String,
         icon: String,
         deletable: Boolean,
         formatted: Boolean,
+        order:Number,
         dateCreated: {type: Date, default: Date.now()}
     }, {collection: "widget"});
 

@@ -39,6 +39,7 @@
             var url = "/api/widget/" + widgetId;
             return $http.delete(url);
         }
+
         function widgetsSort(initial, final, pageId) {
             var url = "/api/page/"+pageId+"/widget?initial="+initial+"&final="+ final;
             return $http.put(url);

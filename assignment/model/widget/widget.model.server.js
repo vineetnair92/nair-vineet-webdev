@@ -18,14 +18,16 @@ module.exports = function () {
 
     function createWidget(pageId, widget) {
         widget._page = pageId;
+        widget.size = 1;
+        widget.width = "100%";
         return Widget
             .find({_page: pageId})
-            .then(function (widgets)
-            {
-                widget.index = widgets.length;
+            .then(function (widgets) {
+                console.log("Widget Created");
                 return Widget.create(widget);
             });
     }
+
 
     function findAllWidgetsForPage(pageId) {
         return Widget.find({_page: pageId}).sort('order');
@@ -53,25 +55,25 @@ module.exports = function () {
         return Widget.update({_id: widgetId},
             {
                 $set: {
-                    name: widget.name,
-                    description: widget.description,
-                    text: widget.text,
-                    placeholder: widget.placeholder,
+                    name: widget.name ? widget.name : null,
+                    description: widget.description ? widget.description:null,
+                    text: widget.text ? widget.text : null,
+                    placeholder: widget.placeholder ? widget.placeholder : null,
                     url: widget.url,
-                    width: widget.width,
-                    height: widget.height,
-                    rows: widget.rows,
-                    size: widget.size,
+                    width: widget.width ? widget.width : null,
+                    height: widget.height ? widget.height : null,
+                    rows: widget.rows ? widget.rows : null,
+                    size: widget.size ? widget.size : null,
                     class: widget.class,
                     icon: widget.icon,
                     deletable: widget.deletable,
-                    formatted:widget.formatted
+                    formatted: widget.formatted ? widget.formatted : null
                 }
             });
     }
 
     function deleteWidget(widgetId) {
-        return WidgetModel.remove(
+        return Widget.remove(
             {
                 _id: widgetId
             });
