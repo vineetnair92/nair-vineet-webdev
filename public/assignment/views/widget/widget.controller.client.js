@@ -86,6 +86,7 @@
                 .createWidget(vm.pageId, widget)
                 .then(function (response) {
                     var widget = response.data;
+                    console.log("Done");
                     vm.success = "Widget created successfully";
                     $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
                 }, function (error) {
