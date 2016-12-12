@@ -14,7 +14,7 @@
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             createUser: createUser,
-            deleteUser: deleteUser,
+            deleteUser: deleteUser
         }
         return api;
 

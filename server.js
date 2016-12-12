@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-//require("./project/app.js")(app);
+require("./project/app.js")(app);
 require("./assignment/app.js")(app);
 app.set('ipaddress', (process.env.IP));
 app.set('port', (process.env.PORT || 3000));

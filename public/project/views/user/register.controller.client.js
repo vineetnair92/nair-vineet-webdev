@@ -54,16 +54,17 @@
         }
 
 
-        function registerUserAfterValidation(user) {
+        function registerUserAfterValidation(users) {
             UserService
-                .register(user)
+                .register(users)
                 .then(function (response) {
                     var user = response.data;
-                    if (user && user.usertype == "Customer") {
+                    console.log(response.data);
+                    if (user && users.usertype == "Customer") {
                         console.log(user._id);
                         $location.url("/customer/" + user._id+"/"+ user.company);
                     }
-                    else if (user && user.usertype == "Staff") {
+                    else if (user && users.usertype == "Staff") {
                         $location.url("/user/" + user._id);
                     }
                     else {

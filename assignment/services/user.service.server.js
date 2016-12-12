@@ -6,20 +6,20 @@ module.exports = function(app, models) {
     var userModel = models.userModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
+    //var FacebookStrategy = require('passport-facebook').Strategy;
     var bcrypt = require('bcrypt-nodejs');
     var auth = authorized;
 
-    var facebookConfig = {
+ /*   var facebookConfig = {
         clientID: process.env.FACEBOOK_CLIENT_ID,
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL: process.env.FACEBOOK_CALLBACK_URL
     };
-
+*/
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
-    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
+  //  passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
 
     app.post('/api/user', createUser);
     app.get('/api/user', findUser);

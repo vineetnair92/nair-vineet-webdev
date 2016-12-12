@@ -6,6 +6,11 @@
     function Configure($routeProvider) {
 
         $routeProvider
+            .when("/home", {
+                templateUrl: "views/homepage/project.view.client.html",
+                controller: 'ProjectController',
+            })
+
             .when("/login", {
                 templateUrl: 'views/user/login.view.client.html',
                 controller: 'LoginController',
@@ -144,7 +149,7 @@
                 }
             })
             .otherwise({
-                redirectTo: '/login'
+                redirectTo: '/home'
             });
 
         function isLoggedIn(UserService, $location, $q, $rootScope) {
@@ -160,14 +165,14 @@
                         if(user == '0') {
                             $rootScope.currentUser = null;
                             deferred.reject();
-                            $location.url("/login");
+                            $location.url("/home");
                         } else {
                             $rootScope.currentUser = user;
                             deferred.resolve();
                         }
                     },
                     function(err) {
-                        $location.url("/login");
+                        $location.url("/home");
                     }
                 );
 
