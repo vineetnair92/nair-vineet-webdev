@@ -12,13 +12,14 @@ module.exports = function () {
         findUserById: findUserById,
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
+        findUserByFacebookId: findUserByFacebookId,
         updateUser: updateUser,
-        deleteUser: deleteUser,
+        deleteUser: deleteUser
     };
     return api;
 
     function createUser(user) {
-        console.log("User model created");
+        console.log("User models created");
         return User.create(user);
     }
 
@@ -34,6 +35,10 @@ module.exports = function () {
 
         return User.findById(userId);
     }
+
+    function findUserByFacebookId(facebookId) {
+                return User.findOne({'facebook.id': facebookId});
+            }
 
     function updateUser(user, userId) {
         delete user._id;

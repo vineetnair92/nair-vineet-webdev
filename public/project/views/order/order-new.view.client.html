@@ -1,0 +1,80 @@
+<form name="newOrderForm" novalidate>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.userId}}/company/{{model.companyId}}/order" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+                    </a>
+                </p>
+                <a class="navbar-brand" href="">
+                    LOT INWARD
+                </a>
+                <p class="navbar-text pull-right">
+                    <button ng-click="(submitted=true) && newOrderForm.$valid && model.createOrder(order)"
+                            class="validationButton navbar-link">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container content">
+        <div class="form-group">
+            <label for="SL NO">Sl No</label>
+            <input type="text"
+                   class="form-control"
+                   id="SL NO"
+                   name="SL NO"
+                   ng-model="order.SlNo"
+                   placeholder="SL NO"
+                   required>
+            <div ng-show="newOrderForm.$submitted && newOrderForm.ordername.$invalid"
+                 class="elementErrorMsg">
+                <span>*required field</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Order Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="description"
+                   ng-model="order.description"
+                   placeholder="Order Description"
+                   required>
+            <div ng-show="newOrderForm.$submitted && newOrderForm.ordername.$invalid"
+                 class="elementErrorMsg">
+                <span>*required field</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="order-stat">Order Status</label>
+            <input id="order-stat"
+                   type="text"
+                   name="orderstatus"
+                   class="form-control"
+                   value="Recieved Order"
+                   disabled/>
+        </div>
+
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            Error Order Creation !
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row  navbar-footer">
+                <div class="navbar-text text-center pull-right ">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</form>

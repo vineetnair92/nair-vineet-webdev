@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#/customer/{{model.userId}}/{{model.company}}" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="">
+                SUMMARY
+            </a>
+        </div>
+    </div>
+</nav>
+
+<table ng-repeat="order in model.orders"  class="table">
+    <thead >
+    <tr>
+        <th class="col-md-6">Order Name</th>
+        <th class="col-md-6">Order Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{order.description}}</td>
+        <td>{{order.orderstatus}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-footer">
+            <p class="navbar-text pull-right">
+                <a href="#/customer/{{model.userId}}/{{model.company}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

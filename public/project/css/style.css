@@ -1,0 +1,126 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 70px;
+
+}
+
+
+.container-fluid > .navbar-header {
+    margin-left: -5px;
+    margin-right: -3px;
+    float: none;
+}
+
+.container > .navbar-header {
+    margin-left: -5px;
+    margin-right: -3px;
+    float: none;
+}
+
+.navbar-brand {
+    margin-left: -5px;
+    font-weight: bold;
+}
+
+.navbar-text {
+    float: none;
+}
+
+.navbar-footer {
+    margin-left: -5px;
+    margin-right: -3px;
+}
+
+.content {
+    margin-top: -10px;
+    margin-bottom: 70px;
+}
+
+.section-heading {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.widget {
+    padding-top: 5px;
+}
+.widget-settings {
+    position: absolute;
+    right: 0;
+    background-color: white;
+    padding: 2px;
+    opacity: 0.8;
+    border-bottom-left-radius: 5px;
+
+}
+
+.image {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#imagefile-input::-webkit-file-upload-button {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 5px;
+}
+
+.navbar-link > .glyphicon {
+    color: rgb(58, 58, 58);
+}
+
+
+.order {
+    padding-right: 20px;
+}
+
+.flickr-add-button {
+    font-weight: bolder;
+}
+
+.navbar-inverse {
+    background-color: #4580cd;
+
+}
+
+.navbar-inverse .glyphicon{
+    color: white;
+
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.cursor-hand{
+    cursor: pointer;
+}
+
+.flickr-thumbnail {
+    height: 100%;
+    width: 100%;
+}
+.flickr-search-results {
+    margin-top: 10px;
+}
+.flickr-search-results .col-xs-4 {
+    padding: 0;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

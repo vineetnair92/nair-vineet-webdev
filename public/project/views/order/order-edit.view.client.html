@@ -1,0 +1,72 @@
+<form name="editOrderForm" novalidate>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.userId}}/company/{{model.companyId}}/order" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+                    </a>
+                </p>
+                <a class="navbar-brand" href="">
+                    Edit Order
+                </a>
+                <p class="navbar-text pull-right">
+                    <button ng-click="(submitted=true) && editOrderForm.$valid && model.updateOrder(model.order)" class="validationButton navbar-link">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container content">
+        <div class="form-group">
+            <label for="edit-order-SLNO">SL NO</label>
+            <input type="text"
+                   class="form-control"
+                   id="edit-order-SLNO"
+                   name="SLNO"
+                   placeholder="SL NO"
+                   ng-model="model.order.SlNo"
+                   required>
+            <div ng-show="editOrderForm.$submitted && editOrderForm.ordername.$invalid" class="elementErrorMsg">
+                <span>*required field</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Order Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="description"
+                   ng-model="model.order.description"
+                   placeholder="Order Description"
+                   required>
+            <div ng-show="newOrderForm.$submitted && newOrderForm.ordername.$invalid"
+                 class="elementErrorMsg">
+                <span>*required field</span>
+            </div>
+        </div>
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
+        <a class="btn btn-danger  btn-block"
+           ng-click="model.deleteOrder(model.order._id)">Delete</a>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <div class="row navbar-text navbar-footer">
+                <div class="text-center pull-right">
+                    <a href="#/user/{{model.userId}}">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</form>
+

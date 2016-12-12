@@ -1,0 +1,142 @@
+<form name="newOrderdetailsForm" novalidate>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text pull-left">
+                    <a href="#/user/{{model.userId}}/company/{{model.companyId}}/order" class="navbar-link">
+                  <span class="glyphicon glyphicon-chevron-left">
+                  </span>
+                    </a>
+                </p>
+                <a class="navbar-brand" href="">
+                    Add Remove Order
+                </a>
+                <p class="navbar-text pull-right">
+                    <button ng-click="(submitted=true) && newOrderdetailsForm.$valid && model.CreateOrderdetails(orderdetails)"
+                            class="validationButton navbar-link">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container content">
+        <div class="form-group">
+            <label for="SL NO">Sl No</label>
+            <input type="text"
+                   class="form-control"
+                   id="SL NO"
+                   name="SL NO"
+                   ng-model="orderdetails.SlNo"
+                   placeholder="SL NO"
+                   required>
+            <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.orderdetailsname.$invalid"
+                 class="elementErrorMsg">
+                <span>*required field</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Order Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="description"
+                   ng-model="orderdetails.description"
+                   placeholder="Order Description"
+                   required>
+            <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.orderdetailsname.$invalid"
+                 class="elementErrorMsg">
+                <span>*required field</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="DIA">Diameter</label>
+            <input type="text"
+                   class="form-control"
+                   id="DIA"
+                   ng-model="orderdetails.diameter"
+                   placeholder="Diameter">
+        </div>
+        <div class="form-group">
+            <label for="Cloth Desc">Cloth Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="Cloth Desc"
+                   ng-model="orderdetails.clothdesc"
+                   placeholder="Description">
+        </div>
+        <div class="form-group">
+            <label for="Color">Color</label>
+            <input type="text"
+                   class="form-control"
+                   id="Color"
+                   ng-model="orderdetails.color"
+                   placeholder="Color">
+        </div>
+        <div class="form-group">
+            <label for="Act-Wt">Actual Weight</label>
+            <input type="text"
+                   class="form-control"
+                   id="Act-Wt"
+                   ng-model="orderdetails.actualWeight"
+                   placeholder="Actual Weight">
+        </div>
+        <div class="form-group">
+            <label for="PDC-Wt">PDC Weight</label>
+            <input type="text"
+                   class="form-control"
+                   id="PDC-Wt"
+                   ng-model="orderdetails.pdcWeight"
+                   placeholder="PDC Weight">
+        </div>
+        <div class="form-group">
+            <label for="Act Rolls">Actual Rolls</label>
+            <input type="text"
+                   class="form-control"
+                   id="Act Rolls"
+                   ng-model="orderdetails.actualRolls"
+                   placeholder="Actual Rolls">
+        </div>
+        <div class="form-group">
+            <label for="PDC Rolls">PDC Rolls</label>
+            <input type="text"
+                   class="form-control"
+                   id="PDC Rolls"
+                   ng-model="orderdetails.pdcRolls"
+                   placeholder="PDC Rolls">
+        </div>
+        <div class="form-group">
+            <label for="UOM">UOM</label>
+            <input type="text"
+                   class="form-control"
+                   id="UOM"
+                   ng-model="orderdetails.uom"
+                   placeholder="UOM">
+        </div>
+        <div class="form-group">
+            <label for="Remarks">Remarks</label>
+            <input type="text"
+                   class="form-control"
+                   id="Remarks"
+                   ng-model="orderdetails.Remarks"
+                   placeholder="Remarks">
+        </div>
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        Error Adding lot Order!
+    </div>
+</form>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-footer">
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
