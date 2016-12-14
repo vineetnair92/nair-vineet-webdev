@@ -1,30 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" ng-app="TexApp">
+
+
 <head>
     <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Homepage</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link href='//fonts.googleapis.com/css?family=Kristi|Alegreya+Sans:300' rel='stylesheet' type='text/css'>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="homejs.js"></script>
 </head>
+
 <body>
-    <h1>Web Dev Course Home Page</h1>
+<div class="container">
+    <div id="header" class="row">
+        <div class="col-sm-3" >
+            <div class="slider" id="main-slider"><!-- outermost container element -->
+                <div class="slider-wrapper"><!-- innermost wrapper element -->
+                    <img src="images/image1.jpg" alt="First" class="slide" height="200" width="300" /><!-- slides -->
+                    <img src="images/image2.jpg" alt="Second" class="slide" height="200" width="300" />
+                    <img src="images/image3.jpg" alt="Third" class="slide" height="200" width="300" />
+                </div>
+            </div>
+        </div>
+        <h3>Personal statement </h3>
+            <div class="profiletext"> <p>Hi, I am Vineet Nair. I have a strong desire to grow as an engineer and a programmer.
+                I am always striving to commit better code and try to develop developer-friendly programs.
+                While I would be most comfortable to work at a place which employs the technologies I am familiar with,
+                I am also able to pick up new languages and frameworks quickly.</p>
+    </div>
+    <!-- photo end-->
 
-    <p>
-        Customize this home page to your linking.
-    </p>
+        <div class="col-sm-10">
+            <div class="cv-title">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <h1>Vineet Nair</h1>
+                    </div>
+                </div>
+            </div>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/vineetnair92/nair-vineet-webdev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+            <!-- ===========================
+            SOCIAL & CONTACT
+            ============================ -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul class="list-unstyled">
+                        <li><a href="mailto:nair.vin@husky.neu.edu"><span class="social fa fa-envelope-o"></span>nair.vin@husky.neu.edu</a>
+                        </li>
+                    </ul>
+                </div><!-- social 1st col end-->
+
+                <div class="col-sm-4">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://www.linkedin.com/in/vineetnair92/" target="_blank"><img src="" alt="Linkedin" /></a>
+                            <a href="https://www.facebook.com/vineet.nair.923" target="_blank"><img src="" alt="Facebook" /></a>
+                            <a href="https://plus.google.com/u/0/116315993846954638706" target="_blank"><img src="" alt="Googleplus"/></a>
+
+                        </li>
+                    </ul>
+                </div><!-- social 2nd col end-->
+
+                <div class="col-sm-4">
+                    <ul class="list-unstyled">
+                        <li><a href="https://github.com/vineetnair92" target="_blank"><span class="social fa fa-github"></span>github</a>
+                        </li>
+                    </ul>
+                </div><!-- social 3rd col end-->
+            </div><!-- header social end-->
+        </div><!-- header right end-->
+    </div><!-- header end-->
+
+    <hr class="firsthr">
+
+    <!-- ===========================
+    BODY LEFT PART
+    ============================ -->
+    <div class="col-md-8 mainleft">
+        <div id="statement" class="row mobmid">
+            <div class="col-sm-1">
+                <span class="secicon fa fa-user"></span>
+            </div><!--icon end-->
+
+            <div class="col-sm-11">
+                <h3>CS5610 Web Development</h3>
+                <p class="text-justify">More than anything else, I want to work with people who truly believe in the product or service they bring to the market. I am interested in frontend and backend positions. I can program in Python and Java, and can use tools like Lucene, Elasticsearch and Spark.</p>
+            </div><!--info end-->
+        </div><!--personal statement end-->
+    </div><!--left end-->
+
+    <!-- ===========================
+    SIDEBAR
+    =========================== -->
+
+    <div class="col-sm-4">
+        <img src="images/customer_portal_banner-1.jpg" height="200" width="450">
+    </div>
+
+    <div class="col-md-8 mainleft">
+        <div id="cs5610" class="row mobmid">
+            <div class="col-sm-1">
+                <span class="secicon fa fa-user"></span>
+            </div><!--icon end-->
+            <div class="col-sm-11">
+                <h3>Project</h3>
+                <p class="text-justify">Following are the links to the Project and Assignments for Web Development Course CS-5610 for Summer-2016:</p><br>
+                <div class="row">
+                    <div class="col-sm-3" id="experiments">
+                        <p><a href="assignment/index.html" target="_blank"> Assignment </a></p>
+                    </div>
+                    <div class="col-sm-3" id="project">
+                        <p><a href="project/index.html" target="_blank"> Project </a></p>
+                    </div>
+                    <div class="col-sm-3" id="documentation">
+                        <p><a href="https://github.com/vineetnair92" target="_blank"> Github </a> </p>
+                    </div>
+                </div>
+            </div>
+        </div><!--personal statement end-->
+    </div><!--left end-->
+
+
+</div><!--container end-->
+
 </body>
+
 </html>
