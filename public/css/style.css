@@ -1,5 +1,5 @@
 body {
-    background: black;
+    background:lightcoral;
     color: white;
     font-family: 'Alegreya Sans', sans-serif;
     letter-spacing: 2px;
@@ -7,8 +7,8 @@ body {
 }
 
 .container {
-    background: black;
-    color: white;
+    background: lightblue;
+    color: darkslategrey;
     padding: 70px 75px;
     margin: 50px auto;
     border: 1px solid #a5d4fc;
@@ -30,7 +30,7 @@ h1 {
     font-size: 2em;
     font-weight: bolder;
     text-transform: uppercase;
-    color: white;
+    color: rebeccapurple;
     margin: 0;
 }
 
@@ -145,6 +145,6 @@ footer a {
     margin-left: 25%;
 }
 .cv-title{
-    margin-top:10%;
+    margin-top:5%;
 }
 
