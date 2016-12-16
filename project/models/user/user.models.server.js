@@ -29,8 +29,7 @@ module.exports = function (db,mongoose) {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    phone: user.phone,
-                    companies: user.companies
+                    phone: user.phone
                 }
             });
     }

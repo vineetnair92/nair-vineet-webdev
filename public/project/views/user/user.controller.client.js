@@ -25,6 +25,7 @@
             UserService
                 .updateUser(cModel.userId, user)
                 .then(function (response) {
+                    console.log(response.status+ "  HI EDIT " + response);
                     if (response.status === 200) {
                         cModel.updateStats = "success";
                     }
@@ -34,7 +35,7 @@
                 })
                 .catch(function (response) {
                     cModel.updateStats = "error";
-                })
+                });
         }
 
         function deleteUser(userId) {

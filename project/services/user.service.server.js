@@ -13,7 +13,7 @@ module.exports = function (app, models, userModel) {
 //    app.post('/proj/register', register);
 //    app.get('/proj/isLoggedIn', isLoggedIn);
     app.get("/api/user", findUser);
-    app.put("api/user/:userId",auth, updateUser);
+    app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", auth,deleteUser);
 
 
@@ -164,6 +164,7 @@ module.exports = function (app, models, userModel) {
     }
 
     function updateUser(req, res) {
+        console.log("whatup");
         var userId = req.params.userId;
         var user = req.body;
         delete user._id;
