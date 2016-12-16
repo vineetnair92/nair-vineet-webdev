@@ -2,12 +2,6 @@
     angular
         .module("TexApp")
         .controller("EditOrderController", EditOrderController)
-//        .controller('DropDownController', ['$scope', function($scope) {
-//        $scope.data = {
-//            singleSelect: null,
-//        };
-//        }])
-    ;
 
 
     function EditOrderController($location, $routeParams, OrderService) {

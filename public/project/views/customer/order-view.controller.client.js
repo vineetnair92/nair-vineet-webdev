@@ -1,15 +1,13 @@
 (function () {
     angular
         .module('TexApp')
-        .controller("ViewOrderController", ViewOrderController)
+        .controller("ViewOrderController", ViewOrderController);
 
 
     function ViewOrderController($routeParams, OrderService, CompanyListService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
-        vm.company=$routeParams["cid"]
-        vm.back = back;
-        vm.profile = profile;
+        vm.company=$routeParams["cid"];
         vm.clear = clear;
 
         function init() {

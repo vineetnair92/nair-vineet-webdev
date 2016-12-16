@@ -98,38 +98,13 @@
                 controllerAs: 'model',
                 resolve: {
                     isLoggedIn: isLoggedIn
-                }
-            })
 
-/*            .when("/user", {
-                templateUrl: 'views/user/user.view.client.html',
-                controller: 'ProfileController',
-                controllerAs: 'model',
-                resolve: {
-                    isLoggedIn: isLoggedIn
                 }
             })
-*/
-/*            .when("/customer", {
-                templateUrl: 'views/customer/user.view.client.html',
-                controller: 'ProfileController',
-                controllerAs: 'model',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
-            })
-*/
             .when("/register", {
                 templateUrl: 'views/user/register.view.client.html',
                 controller: 'RegisterController',
                 controllerAs: 'model'
-            })
-
-            .when("/customer/:uid/location", {
-                templateUrl: 'views/customer/location.view.client.html',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
             })
 
             .when("/customer/:uid/:cid", {
@@ -140,6 +115,15 @@
                     isLoggedIn: isLoggedIn
                 }
             })
+            .when("/customer/:uid/:cid/location", {
+                templateUrl: 'views/customer/location.view.client.html',
+                controller: 'LocationController',
+                controllerAs: 'model',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
+            })
+
             .when("/customer/:uid/:cid/order", {
                 templateUrl: 'views/customer/order-view.client.html',
                 controller: 'ViewOrderController',

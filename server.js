@@ -33,12 +33,10 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-//var assignUserModel = require("./assignment/model/user/user.model.server")(db, mongoose);
 var projectUserModel = require("./project/models/user/user.models.server")(db, mongoose);
 require("./public/security.js")(app, /*assignUserModel,*/ projectUserModel);
 
 require("./project/app.js")(app,db,mongoose,projectUserModel);
-//require("./assignment/app.js")(app,db,mongoose,assignUserModel);
 app.set('ipaddress', (process.env.IP));
 app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), app.get('ipaddress'));

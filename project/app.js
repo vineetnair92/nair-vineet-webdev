@@ -1,8 +1,6 @@
 module.exports = function (app, db, mongoose, userModel) {
 
-  //  var models = require("./models/models.server")(db,mongoose);
     var models = {
-//        userModel: require("./user/user.models.server.js")(db,mongoose),
         companyModel: require("./models/company/company.model.server")(db,mongoose),
         orderModel: require("./models/order/order.model.server")(db,mongoose),
         orderdetailsModel: require("./models/orderdetails/orderdetails.model.server")(db,mongoose),

@@ -1,6 +1,5 @@
 module.exports = function (db_assignment,mongoose) {
 
-//    var mongoose = require("mongoose");
     var companyListSchema = require("./companyList.schema.server.js")(mongoose);
     var companyList = mongoose.model("companyListSchema", companyListSchema);
     var api = {
