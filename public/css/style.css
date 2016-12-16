@@ -2,6 +2,7 @@ body {
     background:lightcoral;
     color: white;
     font-family: 'Alegreya Sans', sans-serif;
+    font-size: large;
     letter-spacing: 2px;
     padding-bottom: 60px;
 }
@@ -53,6 +54,7 @@ h4 {
     margin: 15px 0 0;
     color : lightyellow;
     font-family: "Segoe Print";
+    font-size: 1.1em;
 }
 
 p,
@@ -60,7 +62,7 @@ a {
     line-height: 1.7em;
     font-weight: lighter;
     letter-spacing: 1px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 li {
@@ -127,7 +129,7 @@ blockquote {
 
 footer p,
 footer a {
-    font-size: 13px;
+    font-size: 30px;
 }
 
 .slider-wrapper {
@@ -154,4 +156,8 @@ footer a {
 
 .social-buttons{
     margin-right: 0px;
+}
+
+.profiletext{
+    font-size: 20px;
 }
