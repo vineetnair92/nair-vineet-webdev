@@ -15,6 +15,7 @@ module.exports = function (mongoose) {
         pdcRolls:String,
         uom:String,
         Remarks:String,
+        ordertype: {type: String,required:true},
         dateCreated: {type: Date, default: Date.now},
     }, {collection: "orderdetails"});
 

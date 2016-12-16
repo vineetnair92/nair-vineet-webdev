@@ -18,9 +18,10 @@
     <table class="table">
         <thead >
         <tr>
-            <th class="col-md-4">Order Name</th>
-            <th class="col-md-4">Actual Weight Ordered</th>
-            <th class="col-md-4">PDC Weight Ordered</th>
+            <th class="col-md-3">Order Name</th>
+            <th class="col-md-3">Actual Weight Ordered</th>
+            <th class="col-md-3">PDC Weight Ordered</th>
+            <th class="col-md-3">Type of Order</th>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
             <td>{{model.orderName.description}}</td>
             <td>{{order.actualWeight}}</td>
             <td>{{order.pdcWeight}}</td>
+            <td>{{order.ordertype}}</td>
         </tr>
         </tbody>
     </table>

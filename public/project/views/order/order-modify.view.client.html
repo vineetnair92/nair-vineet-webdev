@@ -22,6 +22,15 @@
     </nav>
 
     <div class="container content">
+        <br>
+        <div>
+            <label for="Order Type">Order Type </label>
+            <select id="Order Type"  ng-model="orderdetails.ordertype" ng-dropdown required>
+                <option ng-option value="In Order">In Order</option>
+                <option ng-option value="Out Order">Out Order</option>
+            </select>
+        </div>
+        <br><br>
         <div class="form-group">
             <label for="SL NO">Sl No</label>
             <input type="text"

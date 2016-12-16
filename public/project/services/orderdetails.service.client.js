@@ -24,6 +24,7 @@
                 pdcRolls:order.pdcRolls,
                 uom:order.uom,
                 Remarks:order.Remarks,
+                ordertype:order.ordertype,
                 _order: orderId
             };
             var url = "/api/order/" + orderId + "/orderdetails";
