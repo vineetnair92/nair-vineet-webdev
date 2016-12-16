@@ -1,10 +1,10 @@
 /**
  * Created by Vineet Nair on 11/18/2016.
  */
-module.exports = function () {
+module.exports = function (db,mongoose) {
 
-    var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
+//    var mongoose = require("mongoose");
+    var UserSchema = require("./user.schema.server")(mongoose);
     var User = mongoose.model("User", UserSchema);
 
     var api = {

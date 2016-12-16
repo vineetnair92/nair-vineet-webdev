@@ -14,7 +14,7 @@
         function findCompanyExists(companyname) {
             var attr1 = "company=" + companyname;
             var url = "/api/companylist?" + attr1;
-            console.log("SERVICE CLIENT!!");
+            console.log("SERVICE CLIENT!! " + url);
             return $http.get(url);
         }
 

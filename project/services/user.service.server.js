@@ -1,27 +1,27 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require("bcrypt-nodejs");
+//    var passport = require('passport');
+//    var LocalStrategy = require('passport-local').Strategy;
+//    var bcrypt = require('bcrypt-nodejs');
 
-module.exports = function (app, models) {
+module.exports = function (app, models, userModel) {
 
-    var userModel = models.userModel;
-
-    app.post("/api/user", createUser);
+//    var userModel = models.userModel;
+    var auth = authorized;
+    app.post("/api/user", auth,createUser);
     app.get("/api/user/:userId", findUserById);
-    app.post("/api/login",passport.authenticate('local'), login);
-    app.post('/api/logout', logout);
-    app.post('/api/register', register);
-    app.get('/api/isLoggedIn', isLoggedIn);
+//    app.post("/proj/login",passport.authenticate('local'), login);
+//    app.post('/proj/logout', logout);
+//    app.post('/proj/register', register);
+//    app.get('/proj/isLoggedIn', isLoggedIn);
     app.get("/api/user", findUser);
-    app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.put("api/user/:userId",auth, updateUser);
+    app.delete("/api/user/:userId", auth,deleteUser);
 
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+//    passport.use(new LocalStrategy(localStrategy));
+//    passport.serializeUser(serializeUser);
+//    passport.deserializeUser(deserializeUser);
 
-    function localStrategy(username, password, done) {
+ /*   function localStrategy(username, password, done) {
         userModel
             .findUserByUsername(username)
             .then(
@@ -95,7 +95,7 @@ module.exports = function (app, models) {
             res.send('0');
         }
     }
-
+*/
     function createUser(req, res) {
         var newUser = req.body;
         userModel
@@ -124,7 +124,7 @@ module.exports = function (app, models) {
             })
             .catch(function (error) {
                 res.statusCode(404).send(err);
-            })
+            });
     }
 
     function findUser(req, res) {
@@ -147,10 +147,9 @@ module.exports = function (app, models) {
                 req.session.user = user;
                 res.send(user);
             })
-            .catch((function (error) {
+            .catch(function (error) {
                 res.status(404).send(error);
-            }))
-
+            });
     }
 
     function findUserByUsername(username, res) {
@@ -175,8 +174,7 @@ module.exports = function (app, models) {
             })
             .catch(function (error) {
                 res.status(400).send(error);
-            })
-
+            });
     }
 
     function deleteUser(req, res) {
@@ -189,5 +187,14 @@ module.exports = function (app, models) {
             .catch(function (error) {
                 res.status(400).send(error);
             });
+    }
+
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
     }
 };

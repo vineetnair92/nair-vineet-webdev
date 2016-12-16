@@ -1,8 +1,8 @@
-module.exports = function (db_assignment) {
+module.exports = function (db_assignment,mongoose) {
 
-    var mongoose = require("mongoose");
-    var OrderdetailsSchema = require("./orderdetails.schema.server.js")();
-    var Orderdetails = db_assignment.model("Orderdetails", OrderdetailsSchema);
+//    var mongoose = require("mongoose");
+    var OrderdetailsSchema = require("./orderdetails.schema.server.js")(mongoose);
+    var Orderdetails = mongoose.model("Orderdetails", OrderdetailsSchema);
     var api = {
         createorderdetails: createorderdetails,
         findAllOrderdetailsforOrder: findAllOrderdetailsforOrder,

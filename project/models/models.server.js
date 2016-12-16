@@ -1,7 +1,7 @@
-module.exports = function () {
+//module.exports = function (db,mongoose) {
 
 
-    var mongoose = require("mongoose");
+  /*  var mongoose = require("mongoose");
 
     var connectionString = 'mongodb://localhost/ERP_DB';
 //    var connectionString = 'mongodb://heroku_dkjw1m77:2ued38bogvfa0sl5873ahsmc5v@ds037165.mlab.com:37165/heroku_dkjw1m77';
@@ -14,15 +14,15 @@ module.exports = function () {
     mongoose.Promise = global.Promise;
 
     var db_assignment =  mongoose.createConnection(connectionString);
+*/
 
+  //  var models = {
+//        userModel: require("./user/user.models.server.js")(db,mongoose),
+ //       companyModel: require("./company/company.model.server")(db,mongoose),
+ //       orderModel: require("./order/order.model.server")(db,mongoose),
+ //       orderdetailsModel: require("./orderdetails/orderdetails.model.server")(db,mongoose),
+ //       companyListModel: require("./companyList/companyList.models.server")(db,mongoose)
+//    }
 
-    var models = {
-        userModel: require("./user/user.models.server.js")(db_assignment),
-        companyModel: require("./company/company.model.server")(db_assignment),
-        orderModel: require("./order/order.model.server")(db_assignment),
-        orderdetailsModel: require("./orderdetails/orderdetails.model.server")(db_assignment),
-        companyListModel: require("./companyList/companyList.models.server")(db_assignment)
-    }
-
-    return models;
-}
+ //   return models;
+//}

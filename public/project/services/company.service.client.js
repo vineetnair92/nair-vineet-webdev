@@ -26,8 +26,8 @@
                 _user: userId
             };
             var url = "/api/user/" + userId + "/company";
+            console.log(url);
             return $http.post(url, newCompany);
-
         }
 
         function findCompaniesByUser(userId) {

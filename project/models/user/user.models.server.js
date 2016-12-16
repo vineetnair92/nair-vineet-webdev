@@ -1,9 +1,9 @@
-module.exports = function (db_assignment) {
+module.exports = function (db,mongoose) {
 
-    var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
-    var User = db_assignment.model("User", UserSchema);
-    var Schema = mongoose.Schema;
+//    var mongoose = require("mongoose");
+    var UserSchema = require("./user.schema.server")(mongoose);
+    var User = mongoose.model("user", UserSchema);
+//    var Schema = mongoose.Schema;
     var api = {
         createUser: createUser,
         updateUser: updateUser,
@@ -11,9 +11,8 @@ module.exports = function (db_assignment) {
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         deleteUser: deleteUser,
-        deleteWebsiteForUser: deleteWebsiteForUser,
+        deleteCompanyForUser: deleteCompanyForUser,
         findUserByFacebookId: findUserByFacebookId
-
     };
     return api;
 
@@ -54,7 +53,7 @@ module.exports = function (db_assignment) {
     }
 
 
-    function deleteWebsiteForUser(userId, companyId) {
+    function deleteCompanyForUser(userId, companyId) {
         return User.update({_id: userId},
             {
                 $pullAll: {

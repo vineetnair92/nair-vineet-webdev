@@ -5,6 +5,15 @@ var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var passport = require('passport');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+
+var connectionString = 'mongodb://127.0.0.1:27017/webdev';
+if (process.env.WEB_CONCURRENCY) {
+    connectionString = process.env.MONGODB_URI;
+}
+
+var db=mongoose.connect(connectionString);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,8 +33,12 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./project/app.js")(app);
-require("./assignment/app.js")(app);
+//var assignUserModel = require("./assignment/model/user/user.model.server")(db, mongoose);
+var projectUserModel = require("./project/models/user/user.models.server")(db, mongoose);
+require("./public/security.js")(app, /*assignUserModel,*/ projectUserModel);
+
+require("./project/app.js")(app,db,mongoose,projectUserModel);
+//require("./assignment/app.js")(app,db,mongoose,assignUserModel);
 app.set('ipaddress', (process.env.IP));
 app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), app.get('ipaddress'));

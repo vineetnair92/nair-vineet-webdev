@@ -8,7 +8,7 @@
         $routeProvider
             .when("/home", {
                 templateUrl: "views/homepage/project.view.client.html",
-                controller: 'ProjectController',
+                controller: 'ProjectController'
             })
 
             .when("/login", {
@@ -24,54 +24,6 @@
                     isLoggedIn: isLoggedIn
                 }
             })
-            .when("/user", {
-                templateUrl: 'views/user/user.view.client.html',
-                controller: 'ProfileController',
-                controllerAs: 'model',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
-            })
-
-            .when("/customer/:uid/location", {
-                templateUrl: 'views/customer/location.view.client.html',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
-            })
-
-            .when("/customer/:uid/:cid", {
-                templateUrl: 'views/customer/user.view.client.html',
-                controller: 'ProfileController',
-                controllerAs: 'model',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
-            })
-            .when("/customer", {
-                templateUrl: 'views/customer/user.view.client.html',
-                controller: 'ProfileController',
-                controllerAs: 'model',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
-            })
-
-            .when("/customer/:uid/:cid/order", {
-                templateUrl: 'views/customer/order-view.client.html',
-                controller: 'ViewOrderController',
-                controllerAs: 'model',
-                resolve: {
-                    isLoggedIn: isLoggedIn
-                }
-            })
-
-            .when("/register", {
-                templateUrl: 'views/user/register.view.client.html',
-                controller: 'RegisterController',
-                controllerAs: 'model'
-            })
-
             .when("/user/:uid/company", {
                 templateUrl: 'views/company/company-list.view.client.html',
                 controller: 'CompanyListController',
@@ -148,6 +100,55 @@
                     isLoggedIn: isLoggedIn
                 }
             })
+
+/*            .when("/user", {
+                templateUrl: 'views/user/user.view.client.html',
+                controller: 'ProfileController',
+                controllerAs: 'model',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
+            })
+*/
+/*            .when("/customer", {
+                templateUrl: 'views/customer/user.view.client.html',
+                controller: 'ProfileController',
+                controllerAs: 'model',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
+            })
+*/
+            .when("/register", {
+                templateUrl: 'views/user/register.view.client.html',
+                controller: 'RegisterController',
+                controllerAs: 'model'
+            })
+
+            .when("/customer/:uid/location", {
+                templateUrl: 'views/customer/location.view.client.html',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
+            })
+
+            .when("/customer/:uid/:cid", {
+                templateUrl: 'views/customer/user.view.client.html',
+                controller: 'ProfileController',
+                controllerAs: 'model',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
+            })
+            .when("/customer/:uid/:cid/order", {
+                templateUrl: 'views/customer/order-view.client.html',
+                controller: 'ViewOrderController',
+                controllerAs: 'model',
+                resolve: {
+                    isLoggedIn: isLoggedIn
+                }
+            })
+
             .otherwise({
                 redirectTo: '/home'
             });

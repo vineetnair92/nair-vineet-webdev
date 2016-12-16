@@ -1,8 +1,8 @@
 /**
  * Created by Vineet Nair on 11/18/2016.
  */
-module.exports = function () {
-    var mongoose = require("mongoose");
+module.exports = function (mongoose) {
+  //  var mongoose = require("mongoose");
     var Schema = mongoose.Schema;
 
     var UserSchema = Schema({

@@ -22,11 +22,11 @@
         }
 
         function updateCompany(company) {
-            cModel.updateStats =
-
                 CompanyService
                     .updateCompany(cModel.companyId, company)
                     .then(function (response) {
+                        console.log(response);
+                        console.log(response.status);
                         var updateStats = response.status;
                         if (updateStats === 200) {
                             $location.url("/user/" + cModel.userId + "/company");

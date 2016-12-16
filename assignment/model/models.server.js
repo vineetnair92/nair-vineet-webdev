@@ -3,7 +3,7 @@
  */
 module.exports = function () {
 
-    var mongoose = require("mongoose");
+  /*  var mongoose = require("mongoose");
     var connectionString = 'mongodb://127.0.0.1:27017/dbWAM';
 
     if (process.env.WEB_CONCURRENCY) {
@@ -11,9 +11,9 @@ module.exports = function () {
     }
 
     mongoose.connect(connectionString);
-
+*/
     var models = {
-        userModel: require("./user/user.model.server.js")(),
+        //userModel: require("./user/user.model.server.js")(),
         websiteModel: require("./website/website.model.server")(),
         pageModel: require("./page/page.model.server")(),
         widgetModel: require("./widget/widget.model.server")()

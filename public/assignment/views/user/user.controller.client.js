@@ -59,6 +59,7 @@
                         .register(user)
                         .then(function (response) {
                             var user = response.data;
+                            console.log("Qwe");
                             $rootScope.currentUser = user;
                             $location.url("/user/"+ user._id);
                         }, function (error) {

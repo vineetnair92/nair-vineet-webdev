@@ -15,46 +15,20 @@
             CompanyService
                 .createCompany(cModel.userId, company)
                 .then(function (response) {
-                    if (response.data) {
-                        var _companyId = response.data._id;
-                        updateCompanyReferencesInUser(_companyId,company);
+                    var comp=response.data;
+                    console.log("REAched back controller   "+ response.data);
+                    if (comp) {
+                        var _companyId = comp._id;
+                        AddCompanyList(_companyId,comp);
+                        $location.url("/user/" + cModel.userId + "/company");
+                     //   updateCompanyReferencesInUser(_companyId,comp);
                     } else {
                         cModel.error = "Unable to create company";
                     }
                 });
-
         }
 
-        function updateCompanyReferencesInUser(companyId,company) {
-            UserService
-                .findUserById(cModel.userId)
-                .then(function (response) {
-                    var user = response.data;
-                    if (user) {
-                        user.companies.push(companyId);
-                        UserService
-                            .updateUser(cModel.userId, user)
-                            .then(function (response) {
-                                if (response.status === 200) {
-                                    $location.url("/user/" + cModel.userId + "/company");
-                                }
-                                else {
-                                    cModel.error = userCompaniesUpdateError;
-                                }
-                            })
-                            .catch(function (error) {
-                                cModel.error = userCompaniesUpdateError;
-                            });
-
-                    }
-                    else {
-                        cModel.error = userCompaniesUpdateError;
-                    }
-                })
-                .catch(function (error) {
-                    cModel.error = userCompaniesUpdateError;
-                });
-
+        function AddCompanyList(companyId,company) {
             CompanyListService
                 .createCompanyList(companyId, company)
                 .then(function (response) {
@@ -62,7 +36,6 @@
                         cModel.error = "Unable to create company";
                     }
                 });
-
         }
     }
 })();

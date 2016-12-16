@@ -1,7 +1,7 @@
-module.exports = function (app, models) {
+module.exports = function (app, models,userModel) {
 
     var companyModel = models.companyModel;
-    var userModel = models.userModel;
+//    var userModel = models.userModel;
 
     app.post("/api/user/:userId/company", createCompany);
     app.get("/api/user/:userId/company", findAllCompaniesForUser);
@@ -16,9 +16,10 @@ module.exports = function (app, models) {
             .createCompanyForUser(newCompany)
             .then(function (company) {
                 res.json(company);
-                console.log(company._doc._id);
+                console.log("Reached Here"+company._doc._id);
             })
             .catch(function (error) {
+                console.log("Oops..");
                 res.status(400).send(error);
             })
     }
@@ -69,7 +70,7 @@ module.exports = function (app, models) {
         companyModel
             .updateCompany(companyId, company)
             .then(function (response) {
-                res.send(response);
+                res.json(response);
             })
             .catch(function (error) {
                 res.status(400).send(error);

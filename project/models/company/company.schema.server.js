@@ -1,6 +1,6 @@
-module.exports = function () {
+module.exports = function (mongoose) {
 
-    var mongoose = require("mongoose");
+ //   var mongoose = require("mongoose");
     var Schema = mongoose.Schema;
     var CompanySchema = Schema({
         _user: {type: Schema.Types.ObjectId, ref: 'User'},

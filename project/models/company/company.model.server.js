@@ -1,8 +1,8 @@
-module.exports = function (db_assignment) {
+module.exports = function (db_assignment,mongoose) {
 
-    var mongoose = require("mongoose");
-    var CompanySchema = require("./company.schema.server.js")();
-    var Company = db_assignment.model("Company", CompanySchema);
+   // var mongoose = require("mongoose");
+    var CompanySchema = require("./company.schema.server.js")(mongoose);
+    var Company = mongoose.model("Company", CompanySchema);
     var api = {
         createCompanyForUser: createCompanyForUser,
         findAllCompanyForUser: findAllCompanyForUser,

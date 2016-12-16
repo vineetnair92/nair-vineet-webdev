@@ -1,13 +1,13 @@
 /**
  * Created by Vineet Nair on 11/5/2016.
  */
-module.exports = function(app, models) {
+module.exports = function(app, models,userModel) {
 
-    var userModel = models.userModel;
-    var passport = require('passport');
-    var LocalStrategy = require('passport-local').Strategy;
+//    var userModel = models.userModel;
+//    var passport = require('passport');
+//    var LocalStrategy = require('passport-local').Strategy;
     //var FacebookStrategy = require('passport-facebook').Strategy;
-    var bcrypt = require('bcrypt-nodejs');
+//    var bcrypt = require('bcrypt-nodejs');
     var auth = authorized;
 
  /*   var facebookConfig = {
@@ -16,31 +16,31 @@ module.exports = function(app, models) {
         callbackURL: process.env.FACEBOOK_CALLBACK_URL
     };
 */
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-  //  passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
+//    passport.use(new LocalStrategy(localStrategy));
+//    passport.serializeUser(serializeUser);
+//    passport.deserializeUser(deserializeUser);
+//    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookStrategy));
 
-    app.post('/api/user', createUser);
+    app.post('/api/user', auth,createUser);
     app.get('/api/user', findUser);
     app.get('/api/user/:uid', findUserById);
-    app.put('/api/user/:uid', updateUser);
-    app.delete('/api/user/:uid', deleteUser);
+    app.put('/api/user/:uid',auth, updateUser);
+    app.delete('/api/user/:uid',auth, deleteUser);
 
     //Secure authentication
-    app.post("/api/login", passport.authenticate('local'), login);
-    app.post("/api/logout", logout);
-    app.post("/api/register", register);
-    app.get("/api/loggedin", loggedIn);
-    app.get("/auth/facebook", passport.authenticate('facebook', {scope: 'email'}));
-    app.get("/auth/facebook/callback",
-        passport.authenticate('facebook', {
-            successRedirect: '/assignment/#/user',
-            failureRedirect: '/assignment/#/login'
-        }));
+    //app.post("/api/login", passport.authenticate('local'), login);
+    //app.post("/api/logout", logout);
+    //app.post("/api/register", register);
+    //app.get("/api/loggedin", loggedIn);
+    //app.get("/auth/facebook", passport.authenticate('facebook', {scope: 'email'}));
+    //app.get("/auth/facebook/callback",
+     //   passport.authenticate('facebook', {
+      //      successRedirect: '/assignment/#/user',
+       //     failureRedirect: '/assignment/#/login'
+       // }));
 
 
-    function localStrategy(username, password, done) {
+    /*function localStrategy(username, password, done) {
         userModel
             .findUserByCredentials(username, password)
             .then(function (user) {
@@ -56,7 +56,7 @@ module.exports = function(app, models) {
                 }
             });
     }
-
+*/
     function authorized (req, res, next) {
         if (!req.isAuthenticated()) {
             res.send(401);
@@ -64,7 +64,7 @@ module.exports = function(app, models) {
             next();
         }
     }
-
+/*
     function serializeUser(user, done) {
         done(null, user);
     }
@@ -140,14 +140,16 @@ module.exports = function(app, models) {
                 return done(err, null);
             });
     }
-
+*/
     function createUser(req, res) {
         var newUser = req.body;
-            userModel
+        console.log("successfully returning");
+        userModel
                 .createUser(newUser)
                 .then(function (user) {
                     res.json(user);
                 }, function (error) {
+                    console.log("successfully returning");
                     res.statusCode(400).send(error);
                 });
     }
