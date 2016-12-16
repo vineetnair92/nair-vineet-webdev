@@ -61,6 +61,49 @@
                     registerForm.password.$modelValue != registerForm.verifypassword.$modelValue" class="elementErrorMsg">
             <span>*Passwords must match</span>
         </div>
+
+        <div class="form-group">
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   ng-model="user.email"
+                   placeholder="abc@gmail.com"
+            required>
+        </div>
+        <div ng-show="registerForm.$submitted && registerForm.email.$invalid" class="elementErrorMsg">
+            <span>*required field</span>
+        </div>
+        <div ng-if="registerForm.$submitted registerForm.email.$invalid" class="elementErrorMsg">
+            <span>Email Format required</span>
+        </div>
+
+        <div class="form-group">
+            <input type="text"
+                   class="form-control"
+                   id="first-name"
+                   ng-model="user.firstName"
+                   placeholder="Abcde"
+            required>
+        </div>
+        <div ng-show="registerForm.$submitted && registerForm.firstName.$invalid" class="elementErrorMsg">
+            <span>*required field</span>
+        </div>
+
+        <div class="form-group">
+            <input type="text"
+                   class="form-control"
+                   id="last-name"
+                   ng-model="user.lastName"
+                   placeholder="Xyz">
+        </div>
+        <div class="form-group">
+            <input type="text"
+                   class="form-control"
+                   id="phone"
+                   ng-model="user.phone"
+                   placeholder="0123456789">
+        </div>
+
         <div id="cash" ng-if="user.usertype == 'Customer'">
             <div >
                 <div>

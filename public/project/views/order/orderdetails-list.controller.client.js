@@ -4,7 +4,7 @@
         .controller("OrderDetailsListController", OrderDetailsListController)
 
 
-    function OrderDetailsListController($routeParams, OrderDetailsService) {
+    function OrderDetailsListController($routeParams, OrderDetailsService,OrderService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
         vm.companyId = $routeParams["wid"];
@@ -21,6 +21,11 @@
                     vm.orders = response.data;
                 }, function (error) {
                     vm.alert = "Unable to find order details for order";
+                });
+            OrderService
+                .findOrderById(vm.orderId)
+                .then(function (response) {
+                    vm.orderName = response.data;
                 });
         }
 

@@ -15,6 +15,16 @@
         cModel.profile = profile;
         cModel.clear = clear;
 
+        init();
+
+        function init() {
+            OrderService
+                .findOrderById(cModel.orderId)
+                .then(function (response) {
+                    cModel.order = response.data;
+                });
+        }
+
 
         function CreateOrderdetails(orderdetails) {
             OrderDetailsService

@@ -14,7 +14,7 @@
     </div>
 </nav>
 
-<table ng-repeat="order in model.orders"  class="table">
+<table class="table">
     <thead >
     <tr>
         <th class="col-md-6">Order Name</th>
@@ -22,7 +22,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr ng-repeat="order in model.orders" >
         <td>{{order.description}}</td>
         <td>{{order.orderstatus}}</td>
     </tr>

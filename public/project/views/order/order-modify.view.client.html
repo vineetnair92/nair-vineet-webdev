@@ -28,9 +28,9 @@
                    class="form-control"
                    id="SL NO"
                    name="SL NO"
-                   ng-model="orderdetails.SlNo"
+                   ng-model="model.order.SlNo"
                    placeholder="SL NO"
-                   required>
+                   disabled>
             <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.orderdetailsname.$invalid"
                  class="elementErrorMsg">
                 <span>*required field</span>
@@ -42,10 +42,10 @@
             <input type="text"
                    class="form-control"
                    id="description"
-                   ng-model="orderdetails.description"
+                   ng-model="model.order.description"
                    placeholder="Order Description"
-                   required>
-            <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.orderdetailsname.$invalid"
+                   disabled>
+            <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.description.$invalid"
                  class="elementErrorMsg">
                 <span>*required field</span>
             </div>
@@ -80,16 +80,28 @@
                    class="form-control"
                    id="Act-Wt"
                    ng-model="orderdetails.actualWeight"
-                   placeholder="Actual Weight">
+                   placeholder="Actual Weight"
+                   required>
         </div>
+        <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.Act-Wt.$invalid"
+             class="elementErrorMsg">
+            <span>*required field</span>
+        </div>
+
         <div class="form-group">
             <label for="PDC-Wt">PDC Weight</label>
             <input type="text"
                    class="form-control"
                    id="PDC-Wt"
                    ng-model="orderdetails.pdcWeight"
-                   placeholder="PDC Weight">
+                   placeholder="PDC Weight"
+                   required>
         </div>
+        <div ng-show="newOrderdetailsForm.$submitted && newOrderdetailsForm.PDC-Wt.$invalid"
+             class="elementErrorMsg">
+            <span>*required field</span>
+        </div>
+
         <div class="form-group">
             <label for="Act Rolls">Actual Rolls</label>
             <input type="text"

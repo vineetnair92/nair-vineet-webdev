@@ -15,14 +15,23 @@
 </nav>
 
 <div class="container-fluid content">
-    <ul class="list-group">
-        <li ng-repeat="order in model.orders" class="list-group-item">
-            <a>
-                {{order.description}}
-            </a>
-        </li>
-    </ul>
-</div>
+    <table class="table">
+        <thead >
+        <tr>
+            <th class="col-md-4">Order Name</th>
+            <th class="col-md-4">Actual Weight Ordered</th>
+            <th class="col-md-4">PDC Weight Ordered</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="order in model.orders">
+            <td>{{model.orderName.description}}</td>
+            <td>{{order.actualWeight}}</td>
+            <td>{{order.pdcWeight}}</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
