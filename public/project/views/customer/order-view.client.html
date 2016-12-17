@@ -19,12 +19,15 @@
     <tr>
         <th class="col-md-6">Order Name</th>
         <th class="col-md-6">Order Status</th>
+        <th class="col-md-6">Date Modified</th>
+
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="order in model.orders" >
         <td>{{order.description}}</td>
         <td>{{order.orderstatus}}</td>
+        <td>{{order.dateCreated}}</td>
     </tr>
     </tbody>
 </table>
